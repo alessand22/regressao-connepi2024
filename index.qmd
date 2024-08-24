@@ -1,0 +1,441 @@
+---
+title: "MINICURSO CONNEPI 2024: Regressão Linear para pesquisa tecnológica com apoio do R"
+author: 
+  - name: "Alessandro de Castro Corrêa"
+    email: alessandro.correa@ifpa.edu.br
+    affiliations: Professor - IFPA
+  - name: "Gabriel Henrique Gomes de Souza"
+    affiliations: Bolsista PIBICTI/PROPPG/IFPA/CNPq
+affiliations: "Instituto Federal do Pará - IFPA"
+lang: "pt"
+---
+
+# Por que regressão?
+
+-   Inovação tecnológica envolve propor novas soluções ou aprimoramentos resolver problemas.
+-   Um resultado de um processo ou propriedade de algo pode ser entedido como uma variável que pode ser explicada por outra ou por outras variáveis.
+-   Posso descrever ou estimar o resultado dessa relação?
+-   Como posso melhorar as propriedades de materiais ou de um sistema conhecendo a sua relação com os principais fatores envolvidos?
+-   Como realizar os cálculos e gráficos dessas análise sem despesas?
+
+# Definição
+
+A **regressão** é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* (Faraway 2002).
+
+$$y = f(x_1, x_2, \dots, x_k)$$
+
+A variável dependente deve ser contínua, mas a(s) variável(is) independentes de podem ser contínuas, discretas ou categóricas.
+
+A regressão pode ser utilizadas para três finalidades básicas:
+
+a)  **Descrição**: descrever a estrutura geral de dados;
+b)  **Análise**:Analisar os efeitos de variações nas variáveis independentes ou fatores sobre a variável dependente ou resposta; e
+c)  **Previsão**: estimar valores da variável dependente com base nos valores das variáveis independentes.
+
+A regressão busca explicar porque os valores de cada uma das observações de $y$ são diferentes umas das outras com base na informação dos valores de $x$ associados. O valor esperado de cada $y$ para cada valor de $x$, ou valor condicional de y, pode ser descrito inicialmente pelo seguinte modelo:
+
+$$E(y|x)=\beta_0+\beta_1X + \epsilon$$
+
+\noindent em que o intercepto $\beta_0$ e ao coeficiente de inclinação $\beta_i$ são constantes desconhecidas e $\epsilon$ é uma compontente aleatória.
+
+A @fig-reta (a) apresenta um conjunto de observações de uma variável dependente (*y*) em resposta a diferentes valores de uma variável independente (*X*). Na @fig-reta (b), regressão busca traçar uma reta que cruze as observações dos pares ordenados $(x,y)$ com o melhor ajuste, isto é, com a menor distância entre os pontos e $\beta_0$ e $\beta_1$ são, respectivamente os coeficientes lineares e de inclinação dessa reta.
+
+```{r}
+#| echo: false
+#| label: fig-reta
+#| cap-location: top
+#| layout-ncol: 2
+#| fig-cap: " A reta de regressão"
+#| fig-subcap: 
+#|   - "Dados"
+#|   - "Reta e parâmetros"
+#| fig-cap-location: top
+
+
+set.seed(123)
+u <- rnorm(5,0,1)
+x<-seq(2,10,2)
+y<-2+5*x+u*10
+mod<-lm(y~x)
+#--- Plot 1
+par(mar = c(5.1,4.1,2.1,2.1)) # par(mar = c(5.1,4.1,4.1,2.1))
+
+plot(x,y, pch = 19, col="darkblue", xaxt='n', yaxt='n', ann=FALSE, ylim = c(0,60))
+
+mtext("y", side=2, line=1, cex=1.5, las=1)
+mtext("x", side=1, line=1, cex=1.5, las=1)
+
+
+#--- Plot 2
+
+plot(x,y, pch = 19, col="darkblue", xaxt='n', yaxt='n', ann=FALSE, ylim = c(0,60))
+abline(a=-1.105,b=5.840, col = "red", lwd = 1.5)
+
+mtext("y", side=2, line=1, cex=1.5, las=1)
+mtext("x", side=1, line=1, cex=1.5, las=1)
+
+text(x = 5.3, y = mod$fitted.values[2]-1,
+     expression(italic(~ beta[1])),cex=1.3)
+
+segments(4,mod$fitted.values[2],5,mod$fitted.values[2], lty = "dashed")
+segments(5,mod$fitted.values[2],
+         5,(mod$fitted.values[2]+mod$fitted.values[3])/2, lty = "dashed")
+
+mtext(text = expression(italic(~ beta[0])), 
+      side = 2, 
+      line = .5,
+      outer = FALSE, 
+      at = mod$fitted.values[1]-2, 
+      las = 2,
+      cex=1.3)
+```
+
+Quando há somente uma variável explicativa, *k=1*, chama-se **modelo de regressao simples**.
+
+$$y=\beta_0+\beta_1 X+ \epsilon$$
+
+**y** é o valor da observado da variável dependente, $\beta_0$ é intercepto ou coeficente linear, e $\beta_i$ coeficiente de inclinação, $\varepsilon_i$ é u termo aleatório normalmente distribuído com média zero e variância constante.
+
+Quando há mais de uma varável explicativa, *k\>*1, chama-se **modelo de regressão múltipla**.
+
+$$E(y|x) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k+ \epsilon$$
+
+$X_k$ são as variáveis independentes, $\beta_0$ é uma constante que representa o coeficiente linear ou intercepto do modelo, $\beta_1,\dots,\beta_k$ são os parâmetros de declividade ou coeficientes angulares associados às variáveis independentes.
+
+Os valores dos parâmetros $\beta$ são desconhecidos, mas podem ser estimados a partir de dados amostrais, observados ou experimentais, de forma que os modelo estimado é o seguinte:
+
+$$y_i = b_0 + b_1 X_1 + b_2 X_2 + \dots + b_k X_k+e_i\:,\:\: i=1,\dots,N$$
+
+$y_i$ é o valor da observado da variável dependente, *i* é o número da observação, *N* é o total de observações da amostra, $X_k$ são as variáveis independentes, $b_0$ é a estimativa do intercepto do modelo, $b_1,\dots,b_k$ são as estimativas dos coeficientes angulares, $e_i$ é o valor do termo aleatório ou resíduo.
+
+# Estimativa do modelo
+
+Uma vez de posse da estimativa de $\beta$, o modelo permite estimar os valores da variável dependente contidos no vetor $\hat{y}$:
+
+$$ \hat{y}_i=b_0 + b_1 X_i$$
+
+O método dos MQO envolve encontrar $\mathbf{b}$ que minimize a soma dos quadrados dos resíduos. O resíduo ($e_i$) pode ser definido como a diferença entre o valor observado ($y_i$) é aquele calculado pelo modelo, denominado valor ajustado ou previsto ($\hat{y}$), podendo se expresso como abaixo
+
+$$e_i =y_i-\hat{y}_i$$
+
+Os residuos são ilustrados na @fig-residuos e são estimativas dos valores do termo aleatório $\epsilon$ os quais não são observáveis.
+
+
+```{r}
+#| echo: false
+#| label: fig-residuos
+#| cap-location: top
+#| fig-cap: "Os resíduos"
+#| fig-cap-location: top
+
+par(mar = c(5.1,4.1,2.1,2.1)) # par(mar = c(5.1,4.1,4.1,2.1))
+
+plot(x,y, pch = 19, col="darkblue", xaxt='n', yaxt='n', ann=FALSE, ylim = c(0,60))
+segments(x[-3], y[-3], x[-3], mod$fitted.values[-3], col="grey")
+points(x,y, pch = 19, col="darkblue")
+abline(a=-1.105,b=5.840, col = "red", lwd = 2)
+segments(6,mod$fitted.values[3],6,y[3], lty = "dashed")
+text(x = 6, y = y[3], expression(italic(~ y[i])), pos = 2,cex=1.3)
+text(x = 6, y = (y[3]+mod$fitted.values[3])/2, expression(italic(e[i]==y[i]-hat(y)[i])), pos = 2, cex=1.3)
+text(x = 6, y = mod$fitted.values[3], expression(italic(~ hat(y)[i])), pos = 2,cex=1.3)
+text(x = 5.3, y = mod$fitted.values[2]-1,
+     expression(italic(~ beta[1])),cex=1.3)
+segments(4,mod$fitted.values[2],
+         5,mod$fitted.values[2], lty = "dashed")
+segments(5,mod$fitted.values[2],
+         5,(mod$fitted.values[2]+mod$fitted.values[3])/2, lty = "dashed")
+mtext(text = expression(italic(~ beta[0])), 
+      side = 2, 
+      line = .5,
+      outer = FALSE, 
+      at = mod$fitted.values[1]-2, 
+      las = 2,
+      cex=1.3)
+mtext("y", side=2, line=1, cex=1.5, las=1)
+mtext("x", side=1, line=1, cex=1.5, las=1)
+```
+
+
+# O que é o R?
+
+O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word. 
+
+O programas podem ser baixados para instalaçao nos seguintes endereços.
+
+ - [R](https://cran.r-project.org/bin/windows/base/){.external target="_blank"}
+ - [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"}
+ 
+Importante, destacar que o R é o software que realizada os cálculos e gráficos e o RStudio é uma interface, portanto esta não irá funcionar sem o R estar instalado.
+
+Ao ser instalado o R traz um conjunto de pacotes básicos. Um pacote é um conjunto de funções que permitem realizar as operações necessárias. Todavia, um conjunto de pacotes adicionais para inúmeros propósitos que podem ser instalados.
+
+A instalação de um pacote pode ser realizada por meio da função `install.packages()` com o nome do pacote desejado. Por exemplo, vamos instalar o pacote **readxl** que é útil para importar e exportar dados para Excel.
+
+```{r}
+#| eval: false
+install.packages("readxl")
+```
+
+Após instalado, para que os seus recursos sejam ativados, é necessário carregá-lo com a função `library()`.
+
+```{r}
+#| eval: false
+library(readxl)
+```
+
+Os recursos desse pacote adiocinal agora estão disponíveis
+
+
+
+# Lendo e examinando dados no R
+
+O dados estão na primeira aba do arquivo do excel  **dados.xlsx**. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que deve ser instalado no R porque não é um pacote básico.
+
+```{r}
+#| eval: false
+install.packages("readxl")
+```
+
+Assim, pode-se carregar o pacote e  utilizar a função `read_excel()`. Os dados são salvos no objeto `dados`.
+
+Os valores do objeto `dados` podem ser exibidos no console pelo seu nome. As colunas podem ser acessadas, com o uso dos cifrões. A estrutura dos dados pode ser exibida com a função `str()`.
+
+
+```{r}
+library(readxl)
+dados <- read_excel("dados.xlsx", sheet = "ex1_compressao")
+
+dados
+
+dados$pr
+
+str(dados)
+```
+
+Um gráfico pode ser produzido com o comando `plot()`. Os argumentos podem ser informados de duas maneiras. A primeira inserido os valores das colunas individualmente, eixo horizontal e vertical. A segunda na forma de fórmula e indicando o objeto com os dados, nesse caso não precisa usar os cifrões.
+
+```{r}
+plot(dados$pr,dados$rca,
+     xlab = "Proporção de resíduos (%)",
+     ylab = "Resistência (MPa)")
+```
+
+
+```{r}
+plot(rca~pr, data = dados,
+     xlab = "Proporção de resíduos (%)",
+     ylab = "Resistência (MPa)")
+```
+
+
+# Ajustando modelo no R
+
+O ajuste ou estimação do modelo de regressão linear no R é relizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ pr, data = dados)`, informam que se deve estimar o modelo de rca "em função" de pr e que os valores estão armazanados no objeto `dados`.
+
+```{r}
+mod <- lm(rca ~ pr, data = dados)
+summary(mod)
+```
+
+# Qualidade do ajuste
+
+A qualidade do ajuste modelo é a avaliação da capacidade do modelo de regressão explicar as variações de valores da variável dependente, de fazer predições e quais variáveis ajudam nessa explicação. A seguir são descritas brevemente as medidas que permitem essas avaliações.
+
+A estatística **F Anova** (*F-statistic*) mede o efeito conjunto das variáveis independentes (fatores) sobre a variável dependente (resposta). Testa a hipótese nula de que nenhuma das variáveis independentes é capaz de descrever o comportamento da variável dependente. Para que o modelo de regressão proposto seja significativo, a hipótese nula deve ser rejeitada, em geral, quando $Valor-P < α = 0, 05$.
+
+O **Coeficiente de determinação** (*Multiple R-squared* - $R^2$) mede a proporção da variação explicada pela regressão e seu valor varia de 0 a 1, quanto maior esse valor, maior poder explicativo do modelo.
+
+No caso de regressão múltipla, o **Coeficiente de determinação ajustado** (*Adjusted R-squared*) mede a proporção da variação explicada pela regressão, mas penaliza o número de variáveis independentes, uma vez que modelos parcimoniosos são preferíveis por sua simplicidade, logo, o acréscimo de uma variável e da complexidade devem ser justificados por um aumento razoável no poder explicativo.
+
+O **Erro Padrão do Erro** , ou *Residual Standard Error*, também denominado Raiz do Erro Quadrático médio, ou *Root Mean Squared Error (RMSE)*, mede o grau de dispersão em torno da linha de regressão e quanto menor o seu valor, melhor. No R, é calculado pela seguite Equação:
+
+$$
+RMSE = \sqrt{\frac{\sum_{i=1}^n (y_i-\hat{y}_i)^2}{n-k}}
+$$
+
+onde onde RMSE é expressa na mesma unidade de y, *n* é o número de observações e *k*, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cáclulo do RSME, geralmente se dividem os desvios ao quadro por *n*, mas a divisão por $(n-k)$ permite a obtenção de um valor não viesado erro padrão do erro.
+
+```{r}
+summary(mod)
+```
+
+# Pressupostos do Modelo de Regressão
+
+1.  **Linearidade** A relação entre as variáveis explicativas e a variável dependente é linear. A linearidade pode ser avaliada através da inspeção dos gráficos de dispersão ou de resíduos.
+
+2.  **Homocedasticidade**: A variância dos resíduos é constante para todos os valores de *X*. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na @fig-homohetero (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na @fig-homohetero (b) e ou se altera com algum padrão, como na @fig-homohetero (c), diz-se que o modelo apresenta heterocedasticidade.
+
+$$var(\varepsilon|X_1, X_2, \dots, X_k) = \sigma^2$$
+
+```{r}
+#| echo: false
+#| label: fig-homohetero
+#| cap-location: top
+#| fig-cap: "Homocedasticidade e heterocedasticidade"
+#| fig-cap-location: top
+
+
+knitr::include_graphics("img/heterocedasticidade.png")
+```
+
+3.  **Independência dos erros**: os valores de um erro (i) não influencia o valor de outro (j), expressa pelo valor nulo de qualquer par de covariância de erros aleatórios.
+
+$$cov(\varepsilon_i,\varepsilon_j)=0 \; (i \neq j)$$
+
+Isso implica que os valores de y também são estatisticamente independentes e visse-versa.
+
+$$cov(\varepsilon_i,\varepsilon_j)=cov(y_i,y_j)=0 \; (i \neq j)$$
+
+4.  Os erros seguem distribuição normal com média zero e variância constante.
+
+$$\varepsilon_i \sim N(0, \sigma^2)$$
+
+$$E(\varepsilon|X)=0$$
+
+que implica em afirmar que
+
+$$E(y|X)=\beta_0+\beta_1X_1+\dots+\beta_kX_k$$
+
+5.  **Não multicolinearidade perfeita**: as variáveis explicativas são linearmente independentes, isto é, não há correlação perfeita entre elas. A correlação elevada entre as variáveis independentes dificulta a determinação do efeito exato de cada uma sobre a variável dependente.
+
+| Pressuposto                   | Exame                                                                                                               |
+|------------------------------------|------------------------------------|
+| Linearidade                   | Gráfico de dispersão dos resíduos em função dos valores ajustados                                                   |
+| Homocedasticidade             | Gráfico de dispersão dos resíduos em função dos valores ajustados, gráfico (Scale-Location), Teste de Breusch-Pagan |
+| Normalidade zero dos resíduos | Gráfico de dispersão dos resíduos em função dos valores ajustados                                                   |
+| Normalidade                   | QQ-plot e teste de Shapiro-Wilk                                                                                     |
+| Independência dos resíduos    | Gráfico dos resíduos e Coeficiente de Autocorrelação                                                                |
+| Multicolinearidade            | Fator de inflação de variância (VIF) e Tolerância                                                                   |
+
+: Pressuspostos e técnicas de exame
+
+# Avaliação dos pressupostos
+
+A avaliação dos pressupostos da regressão, na maior parte, é realizada por meio de exames dos resíduos na forma de gráficos e de testes estatísticos. No R, alguns exames podem ser aplicados diretamente ao objeto em que o modelo foi salvo, mas outros exigem que os valores dos resíduos sejam extraídos.
+
+Os valores do modelo salvo em `mod` podem ser acessado com o uso do cifrão. Digite o nome do objeto acrescente o cifrão que uma lista de valores será apresentada. Nos comandos a seguir são extraídos os valores dos resíduos e os valores ajustados do modelo.
+
+```{r}
+mod$residuals
+mod$fitted.values
+```
+
+A @fig-resfit é um gráfico de dispersão de resíduos em função dos valores ajustados e permite o exame visual da **linearidade** do modelo da **homocedasticidade**. A linha horizontal foi traçada na altura da média dos resíduos.
+
+```{r}
+#| fig-cap: "Resíduos em função dos valores ajustados"
+#| fig-cap-location: top
+#| label: fig-resfit
+plot(mod$fitted.values, mod$residuals)
+abline(h = mean(mod$residuals), lty = 2, col = "red")
+```
+
+A **normalidade** pode ser examinda por meio do gráfico quantil-quantil (*Normal qqplot*) e de um teste de aderência, aqui utilizaremos o teste de Shapiro-Wilk.
+
+O *Normal Q-Q plot* é utilizado para exame visual da normalidade das observações, podendo ser elaborado com as funções `qqnorm()` e `qqline()`, tendo como principal argumento os resíduos do modelo. Caso os dados sejam normalmente distribuídos os pontos devem se situar aleatoriamente próximos à reta.
+
+O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está próximo da, no entanto, três valores se afastam mais, exigindo um exame formal para verificar se esse afastamento é grave.
+
+```{r}
+#| fig-cap: "Resíduos em função dos valores ajustados"
+#| fig-cap-location: top
+#| label: fig-qqplot
+
+
+qqnorm(mod$residuals, col = "red")
+qqline(mod$residuals)
+```
+
+O teste de Shapiro-Wilk é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
+
+-   $H_0$: Os dado seguem distribuição normal.
+-   $H_1$: Os dado NÃO seguem distribuição normal.
+
+Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se $p<0,05$, caso contrário aceita-se a afirmação de normalidade. Então o que se espera é que $p>0,05$, indicando normalidade e continuidade da análise sem a violação desse pressuposto.
+
+A função `shapiro.test()` exibe os valores da estatística de teste (*W*), que é uma qui-quadrado, e o *valor P*.
+
+```{r}
+shapiro.test(mod$residuals)
+```
+
+A análise da **homecedasticidade** pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na @fig-resfit, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan.
+
+O teste de Breusch-Pagan avalia as seguites hipóteses:
+
+-   $H_0$: Homocedasticidade presente.
+-   $H_1$: Heterocedasticidade presente.
+
+Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se $p<0,05$, indicando a presença de heterocedasticidade, caso contrário aceita-se a afirmação de homocedasticidade.
+
+A função `bptest()` do pacote **lmtest** efetua o teste de Breusch-Pagan, mas antes o pacote precisa ser instalado por meio da função `install.packages()`
+
+```{r}
+#| eval: false
+
+install.packages("lmtest")
+```
+
+No resultado do função, BP corresponde à estística de teste e o seu correspondente valor P = 0.7031, por ser superior 0,05, é não é significante, de forma que não se pode rejeitar a hipótese nula e indica homocedasticidade.
+
+```{r}
+#| message: false
+#| warning: false
+library(lmtest)
+bptest(mod)
+```
+
+Um resurso muito ágil e amplo de avaliar os presssupostos do modelo são os *gráficos de diagnóstico do modelo* acionados pela conjugação da função `plot()` e o objeto com as dados do modelo.
+
+Trata-se de 4 gráficos que são acionados e apresentados a medida que pressiona ENTER no console.
+
+a)  Resíduos vs valores ajustados;
+b)  QQplot dos resíduos;
+c)  Scale-location;
+d)  Resíduos vs alavangem (*Residuals vs Leverage*)
+
+Todavia, é mais confortável, dividir-se a janela gráfica e quatro partes e se apresentar todos juntos para um exame mais rápido. A divisão da janela em 2 linhas e 2 colunas é relizada com o comando `par(mfrow = c(2,2))`. Em seguida, digita-se o comando para geração dos 4 gráficos de diagnósticos do modelo, conforme apresentados na @fig-diagnosticos.
+
+```{r}
+#| fig-cap: "Gráficos de diagnóstico do modelo"
+#| fig-cap-location: top
+#| label: fig-diagnosticos
+par(mfrow = c(2,2))
+plot(mod)
+```
+
+O primeiro é o gráfico de **resíduos vs valores ajustados**, já elaborado anteriomente na @fig-resfit, sendi útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será rasoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.
+
+O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é rasoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (*outliers*).
+
+O segundo gráfico é o **QQplot** permite o exame de normalidade e já foi elaborado na @fig-qqplot, chamando atenção para três valores que se afastam da reta.
+
+O terceiro gráfico é o **scale-location** que é a dispersão dos raízes dos resíduos padronizados em função dos valores ajustados sendo útil para o exame da homocedasticidade. Em caso de homocedasticidade, a linha vermelha será razoavelmente horizontal e os pontos devem se dispersar de forma similar ao longo dos valores ajustados.
+
+O gráfico revela alguma suspeita de dispersão ligeiramente maior no valor 10, mas a linha vermelha não exibe tendência, portanto, é apesar não não haver indícios de dispersão heterôgenea grave dos resíduos, é prudente incluir um teste formal na análise, o qual já foi realizado pelo teste de Breusch-Pagan anteriormente.
+
+O quarto é o gráfico de **Resíduos vs alavangem** (*Residuals vs Leverage*) destinado à identificação de valores atípicos (*outliers*). Os valores limites para que determinadas observações devam ser avaliadas como possível outlier são as distâncias de Cook que mensuram a influência que as observaçoes exercem sobre a estimativa do modelo. Os valores de corte são apresentadas como linhas tracejadas no interior do gráfico e a intepretação dos seus valores podem são apresentadas na Tabela abaixo.
+
+| D           | Interpretação                                 |
+|-------------|-----------------------------------------------|
+| $D<0,5$     | Não são é uma observação atípica|
+| $0,5< D \leq 1$| Geralmente útil estudar a influência de tais observações|
+| $D>1$| Deve-se avaliar a sua exclusão da  amostra.
+
+: Interpretação da distância de Cook
+
+O Residuals vs Leverage na @fig-diagnosticos não exibe observações ultrapassando alguma linha de corte da distância de Cook, aliás apenas parte uma linha de D=0,5 aparace no canto superior direito do gráfico, de modo que não há indícios de valores atípicos na amostra.
+
+Um gráfico com os valores individuais da distância de Cook podem ser exibidos num único gráfico. Para retornar para uma janela sem divisão basta digitar `par(mfrow = c(1,1))` e o próximo gráfico será gerado em janela única. 
+
+```{r}
+#| eval: false
+par(mfrow = c(1,1))
+```
+
+No comando de gráficos de diagnósticos, identifique que deve ser exibido somente o quarto gráfico.
+
+```{r}
+plot(mod, which = 4)
+```
+
