@@ -1,0 +1,90 @@
+---
+title: "Regressão Linear para pesquisa tecnológica com apoio do R"
+author: 
+  - "Alessandro de Castro Corrêa, D.Sc."
+format:
+  revealjs:
+    theme: serif
+    slide-number: true
+    show-slide-number: all
+    logo: "img/GEAG_AZUL_06.png"
+    chalkboard: true
+execute: 
+  echo: true
+code-line-numbers: false
+editor: visual
+lang: pt
+title-slide-attributes: 
+  data-background-image: img/GEAG_AZUL_06.png
+  data-background-size: 20%
+  data-background-position: 50% 2%
+---
+
+## Por que regressão?
+
+-   Inovação tecnológica envolve propor novas soluções ou aprimoramentos para a soluação dos problemas.
+-   Uma variável, resultado ou propriedade pode ser explicado por outra ou por outras variáveis?
+-   Posso descrever ou estimar o resultado dessa relação?
+-   Como posso melhorar as propiedades de materiais ou de um sistema conhecendo a sua relação com os principais fatores envolvidos?
+
+## Definição
+
+A regressão é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* (Faraway 2002).
+
+## Objetivo
+
+a)  **Descrição**: descrever a estrutura geral de dados;
+b)  **Análise**:Analisar os efeitos de variações nas variáveis independentes ou fatores sobre a variável dependente ou resposta; e
+c)  **Previsão**: estimar valores da variável dependente com base nos valores das variáveis independentes.
+
+## A reta de regressão
+
+```{r}
+#| echo: false
+#| cap-location: top
+#| 
+set.seed(123)
+u <- rnorm(5,0,1)
+x<-seq(2,10,2)
+y<-2+5*x+u*10
+mod<-lm(y~x)
+
+par(mar = c(5.1,4.1,2.1,2.1)) # par(mar = c(5.1,4.1,4.1,2.1))
+
+plot(x,y, pch = 19, col="darkblue", xaxt='n', yaxt='n', ann=FALSE)
+abline(a=-1.105,b=5.840, col = "red", lwd = 1.5)
+
+mtext("y", side=2, line=1, cex=1.5, las=1)
+mtext("x", side=1, line=1, cex=1.5, las=1)
+
+text(x = 5.3, y = mod$fitted.values[2]-1,
+     expression(italic(~ beta[1])),cex=1.3)
+
+segments(4,mod$fitted.values[2],5,mod$fitted.values[2], lty = "dashed")
+segments(5,mod$fitted.values[2],
+         5,(mod$fitted.values[2]+mod$fitted.values[3])/2, lty = "dashed")
+
+mtext(text = expression(italic(~ beta[0])), 
+      side = 2, 
+      line = .5,
+      outer = FALSE, 
+      at = mod$fitted.values[1]-2, 
+      las = 2,
+      cex=1.3)
+```
+
+## Regressão Simples
+
+-   somente uma variável independente
+
+$$y=\beta_0+\beta_1 X+ \epsilon$$
+
+**y** é o valor da observado da variável dependente, $\beta_0$ é intercepto ou coeficente linear, e $\beta_i$ coeficiente de inclinação, $\varepsilon_i$ é u termo aleatório normalmente distribuído com média zero e variância constante.
+
+## Regressão múltipla
+
+-   mais de uma variável independente
+
+$$y = \beta_0 + \beta_1 x_ + \beta_2 x_2 + \dots + \beta_k x_k+\varepsilon_i\:,\:\: i=1,\dots,N$$
+
+**y** é o valor da observado da variável dependente, *i* é o número da observação, $x_k$ são as variáveis independentes, $\varepsilon_i$ são os valores do termo aleatório, $\beta_0$ é uma constante que representa o coeficiente linear ou intercepto do modelo, $\beta_1,\dots,\beta_k$ são os parâmetros de declividade ou coeficiente angular e **N** é o total de observações.
