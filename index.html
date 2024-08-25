@@ -121,6 +121,7 @@ window.Quarto = {
   <li><a href="#qualidade-do-ajuste" id="toc-qualidade-do-ajuste" class="nav-link" data-scroll-target="#qualidade-do-ajuste"><span class="header-section-number">9</span> Qualidade do ajuste</a></li>
   <li><a href="#pressupostos-do-modelo-de-regressão" id="toc-pressupostos-do-modelo-de-regressão" class="nav-link" data-scroll-target="#pressupostos-do-modelo-de-regressão"><span class="header-section-number">10</span> Pressupostos do Modelo de Regressão</a></li>
   <li><a href="#avaliação-dos-pressupostos" id="toc-avaliação-dos-pressupostos" class="nav-link" data-scroll-target="#avaliação-dos-pressupostos"><span class="header-section-number">11</span> Avaliação dos pressupostos</a></li>
+  <li><a href="#praticando" id="toc-praticando" class="nav-link" data-scroll-target="#praticando"><span class="header-section-number">12</span> Praticando</a></li>
   </ul>
 </nav>
 </div>
@@ -170,9 +171,9 @@ window.Quarto = {
 
 <section id="apresentação" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Apresentação</h1>
-<p>Este é uma material de apoio para o Minicurso: <strong>Regressão Linear para pesquisa tecnológica com apoio do R</strong> ministrado no XIV Congresso Norte Nordeste de Pesquisa e Inovação (<a href="https://www.even3.com.br/connepi-belem-2024/" class="external" target="_blank">CONNEPI</a>), realizado em Belém/PA, em agosto de 2024.</p>
-<p>Além de breves explicações destinadas complementar uma breve introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.</p>
-<p>O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão (<a href="https://dgp.cnpq.br/dgp/espelhogrupo/34781" class="external" target="_blank">GEAG</a>), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais (<a href="https://belem.ifpa.edu.br/ppgemat" class="external" target="_blank">PPGEMAT</a>), de Estatística aplicada, na Engenharia de Materiais e de Métodos Quantitativos, esta ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA.</p>
+<p>Este é uma material de apoio do Minicurso: <strong>Regressão Linear para pesquisa tecnológica com apoio do R</strong> ministrado no XIV Congresso Norte Nordeste de Pesquisa e Inovação (<a href="https://www.even3.com.br/connepi-belem-2024/" class="external" target="_blank">CONNEPI</a>), realizado em Belém/PA, em agosto de 2024.</p>
+<p>Além das breves explicações destinadas a complementar uma introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.</p>
+<p>O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão (<a href="https://dgp.cnpq.br/dgp/espelhogrupo/34781" class="external" target="_blank">GEAG</a>), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais (<a href="https://belem.ifpa.edu.br/ppgemat" class="external" target="_blank">PPGEMAT</a>), de Estatística aplicada, na Engenharia de Materiais e de Métodos Quantitativos, ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA.</p>
 <p>O modelo de regressão é certamente uma das técnicas estatísticas mais utilizadas em análise de dados, com amplas possibilidades de aplicação em desenvovimento de novas tecnologias e este minicurso é uma introdução gentil ao tema. Espero que aproveitem.</p>
 </section>
 <section id="por-que-regressão" class="level1" data-number="2">
@@ -297,6 +298,12 @@ Figura&nbsp;2: Os resíduos
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Os recursos desse pacote adicional agora estão disponíveis para as atividades de análise.</p>
+<p>Durante este minicurso são utilizados os seguintes pacotes adicionais:</p>
+<ul>
+<li>readxl</li>
+<li>lmtest</li>
+<li>car</li>
+</ul>
 </section>
 <section id="o-diretório-de-trabalho" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> O diretório de trabalho</h1>
@@ -694,6 +701,9 @@ Figura&nbsp;6: Gráficos de diagnóstico do modelo
 </div>
 </div>
 </div>
+</section>
+<section id="praticando" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Praticando</h1>
 </section>
 
 </main>

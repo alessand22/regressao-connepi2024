@@ -17,11 +17,11 @@ format:
 
 # Apresentação
 
-Este é uma material de apoio para o Minicurso: **Regressão Linear para pesquisa tecnológica com apoio do R** ministrado no XIV Congresso Norte Nordeste de Pesquisa e Inovação ([CONNEPI](https://www.even3.com.br/connepi-belem-2024/){.external target="_blank"}), realizado em Belém/PA, em agosto de 2024.
+Este é uma material de apoio do Minicurso: **Regressão Linear para pesquisa tecnológica com apoio do R** ministrado no XIV Congresso Norte Nordeste de Pesquisa e Inovação ([CONNEPI](https://www.even3.com.br/connepi-belem-2024/){.external target="_blank"}), realizado em Belém/PA, em agosto de 2024.
 
-Além de breves explicações destinadas complementar uma breve introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.
+Além das breves explicações destinadas a complementar uma introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.
 
-O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão ([GEAG](https://dgp.cnpq.br/dgp/espelhogrupo/34781){.external target="_blank"}), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais ([PPGEMAT](https://belem.ifpa.edu.br/ppgemat){.external target="_blank"}), de Estatística aplicada, na Engenharia de Materiais e de  Métodos Quantitativos, esta ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA. 
+O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão ([GEAG](https://dgp.cnpq.br/dgp/espelhogrupo/34781){.external target="_blank"}), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais ([PPGEMAT](https://belem.ifpa.edu.br/ppgemat){.external target="_blank"}), de Estatística aplicada, na Engenharia de Materiais e de Métodos Quantitativos, ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA. 
 
 O modelo de regressão é certamente uma das técnicas estatísticas mais utilizadas em análise de dados, com amplas possibilidades de aplicação em desenvovimento de novas tecnologias e este minicurso é uma introdução gentil ao tema. Espero que aproveitem.
 
@@ -214,6 +214,12 @@ library(readxl)
 ```
 
 Os recursos desse pacote adicional agora estão disponíveis para as atividades de análise.
+
+Durante este minicurso são utilizados os seguintes pacotes adicionais:
+
+ - readxl
+ - lmtest
+ - car
 
 # O diretório de trabalho
 
@@ -489,4 +495,6 @@ No comando de gráficos de diagnósticos, identifique que deve ser exibido somen
 ```{r}
 plot(mod, which = 4)
 ```
+
+# Praticando
 
