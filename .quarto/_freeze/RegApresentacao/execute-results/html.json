@@ -1,0 +1,21 @@
+{
+  "hash": "850040c3813464bb7d0ee2d34d998b5f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Regressão Linear para pesquisa tecnológica com apoio do R\"\nauthor: \n  - \"Alessandro de Castro Corrêa, D.Sc.\"\n  - \"Alessandro de Castro Corrêa, D.Sc.\"\nformat:\n  revealjs:\n    theme: serif\n    slide-number: true\n    show-slide-number: all\n    logo: \"img/GEAG_AZUL_06.png\"\n    chalkboard: true\nexecute: \n  echo: true\ncode-line-numbers: false\neditor: visual\nlang: pt\ntitle-slide-attributes: \n  data-background-image: img/GEAG_AZUL_06.png\n  data-background-size: 20%\n  data-background-position: 50% 2%\n---\n\n\n## Por que regressão?\n\n-   Inovação tecnológica envolve propor novas soluções ou aprimoramentos para a soluação dos problemas.\n-   Uma variável, resultado ou propriedade pode ser explicado por outra ou por outras variáveis?\n-   Posso descrever ou estimar o resultado dessa relação?\n-   Como posso melhorar as propiedades de materiais ou de um sistema conhecendo a sua relação com os principais fatores envolvidos?\n\n## Definição\n\nA regressão é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* (Faraway 2002).\n\n## Objetivo\n\na)  **Descrição**: descrever a estrutura geral de dados;\nb)  **Análise**:Analisar os efeitos de variações nas variáveis independentes ou fatores sobre a variável dependente ou resposta; e\nc)  **Previsão**: estimar valores da variável dependente com base nos valores das variáveis independentes.\n\n## A reta de regressão\n\n\n::: {.cell .caption-top}\n::: {.cell-output-display}\n![](RegApresentacao_files/figure-revealjs/unnamed-chunk-1-1.png){width=960}\n:::\n:::\n\n\n## Regressão Simples\n\n-   somente uma variável independente\n\n$$y=\\beta_0+\\beta_1 X+ \\epsilon$$\n\n**y** é o valor da observado da variável dependente, $\\beta_0$ é intercepto ou coeficente linear, e $\\beta_i$ coeficiente de inclinação, $\\varepsilon_i$ é u termo aleatório normalmente distribuído com média zero e variância constante.\n\n## Regressão múltipla\n\n-   mais de uma variável independente\n\n$$y = \\beta_0 + \\beta_1 x_ + \\beta_2 x_2 + \\dots + \\beta_k x_k+\\varepsilon_i\\:,\\:\\: i=1,\\dots,N$$\n\n**y** é o valor da observado da variável dependente, *i* é o número da observação, $x_k$ são as variáveis independentes, $\\varepsilon_i$ são os valores do termo aleatório, $\\beta_0$ é uma constante que representa o coeficiente linear ou intercepto do modelo, $\\beta_1,\\dots,\\beta_k$ são os parâmetros de declividade ou coeficiente angular e **N** é o total de observações.\n",
+    "supporting": [
+      "RegApresentacao_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

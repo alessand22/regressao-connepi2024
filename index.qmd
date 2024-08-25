@@ -8,15 +8,31 @@ author:
     affiliations: Bolsista PIBICTI/PROPPG/IFPA/CNPq
 affiliations: "Instituto Federal do Pará - IFPA"
 lang: "pt"
+format:
+  html:
+    toc: true
+    number-sections: true
+    toc-location: left
 ---
+
+# Apresentação
+
+Este é uma material de apoio para o Minicurso: **Regressão Linear para pesquisa tecnológica com apoio do R** ministrado no XIV Congresso Norte Nordeste de Pesquisa e Inovação ([CONNEPI](https://www.even3.com.br/connepi-belem-2024/){.external target="_blank"}), realizado em Belém/PA, em agosto de 2024.
+
+Além de breves explicações destinadas complementar uma breve introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.
+
+O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão ([GEAG](https://dgp.cnpq.br/dgp/espelhogrupo/34781){.external target="_blank"}), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais ([PPGEMAT](https://belem.ifpa.edu.br/ppgemat){.external target="_blank"}), de Estatística aplicada, na Engenharia de Materiais e de  Métodos Quantitativos, esta ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA. 
+
+O modelo de regressão é certamente uma das técnicas estatísticas mais utilizadas em análise de dados, com amplas possibilidades de aplicação em desenvovimento de novas tecnologias e este minicurso é uma introdução gentil ao tema. Espero que aproveitem.
 
 # Por que regressão?
 
 -   Inovação tecnológica envolve propor novas soluções ou aprimoramentos resolver problemas.
 -   Um resultado de um processo ou propriedade de algo pode ser entedido como uma variável que pode ser explicada por outra ou por outras variáveis.
 -   Posso descrever ou estimar o resultado dessa relação?
--   Como posso melhorar as propriedades de materiais ou de um sistema conhecendo a sua relação com os principais fatores envolvidos?
+-   Como posso melhorar as propriedades de materiais ou de um sistema, conhecendo a sua relação com os principais fatores envolvidos?
 -   Como realizar os cálculos e gráficos dessas análise sem despesas?
+
 
 # Definição
 
@@ -156,6 +172,20 @@ mtext("x", side=1, line=1, cex=1.5, las=1)
 ```
 
 
+Dois testes de hipóteses sobre os parâmatros do modelo podem ser realizados a partir de suas estimativas. Pode-se testar o intercepto é zero, conforme a formulação a seguir:
+
+ - $H_0: \beta_0=0$
+ - $H_1: \beta_0\neq0$
+
+
+Pode-se avaliar se cada uma das variáveis independentes ($X_k$) são capazes de influenciar a variável dependente ($y$) Se não forem capazes o valor do  seu respectivo coeficiente de inclinação será zero, conforme a formulação a seguir:
+
+ - $H_0: \beta_k=0$
+ - $H_1: \beta_k\neq0$
+ 
+As decisões dos testes de hipóteses acima são baseadas no teste t, conforme o nível de significãncia adotado (geralmente $\alpha=0,05$) nos valores P associados a essa estatística. **Rejeita-se a hipótese nula, caso o valor P seja inferior a 0,05.**
+
+
 # O que é o R?
 
 O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word. 
@@ -183,31 +213,51 @@ Após instalado, para que os seus recursos sejam ativados, é necessário carreg
 library(readxl)
 ```
 
-Os recursos desse pacote adiocinal agora estão disponíveis
+Os recursos desse pacote adicional agora estão disponíveis para as atividades de análise.
+
+# O diretório de trabalho
+
+O *Working directory* ou diretório de trabalho, em português, é a pasta em que o R está salvando e lendo objetos. Logo é nesse diretório em que devem estar salvos os arquivos do seu projeto de análise.
+
+A função `getwd()` exibe o diretório de trabalho atual.
+
+```{r}
+#| eval: false
+getwd() # diretorio atual
+```
+
+Para alterar o diretório, utilise a função `setwd()`, informando o caminho. No caminho. Certifique-se de não utilizar, no caminho, o padrão do windows que é "\",  pois no R, o caminho é informado, usando "\\" ou  "/" .
 
 
+```{r}
+#| eval: false
+setwd("meu\\caminho") # conf. diretório
+setwd("meu/caminho")  # conf. diretório
+```
+
+Uma alternativa mais confortável para configurar o diretório, é o uso do **Menu**: *Session/Setting Working Directory/Choose Directory*.
 
 # Lendo e examinando dados no R
 
-O dados estão na primeira aba do arquivo do excel  **dados.xlsx**. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que deve ser instalado no R porque não é um pacote básico.
+Vamos modelar os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um determinado compósito cimentício. Os dados estão na primeira aba do arquivo do excel  [**dadosConnepi.xlsx**](dadosConnepi.xlsx) que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que já deve instalado no R porque não é um pacote básico.
 
 ```{r}
 #| eval: false
 install.packages("readxl")
 ```
 
-Assim, pode-se carregar o pacote e  utilizar a função `read_excel()`. Os dados são salvos no objeto `dados`.
+Carrega-se o pacote, os dados são importados coma função `read_excel()` e os dados são salvos no objeto `dados`. 
 
 Os valores do objeto `dados` podem ser exibidos no console pelo seu nome. As colunas podem ser acessadas, com o uso dos cifrões. A estrutura dos dados pode ser exibida com a função `str()`.
 
 
 ```{r}
 library(readxl)
-dados <- read_excel("dados.xlsx", sheet = "ex1_compressao")
+dados <- read_excel("dadosConnepi.xlsx", sheet = "ex1_compressao")
 
 dados
 
-dados$pr
+dados$ps
 
 str(dados)
 ```
@@ -215,14 +265,14 @@ str(dados)
 Um gráfico pode ser produzido com o comando `plot()`. Os argumentos podem ser informados de duas maneiras. A primeira inserido os valores das colunas individualmente, eixo horizontal e vertical. A segunda na forma de fórmula e indicando o objeto com os dados, nesse caso não precisa usar os cifrões.
 
 ```{r}
-plot(dados$pr,dados$rca,
+plot(dados$ps,dados$rca,
      xlab = "Proporção de resíduos (%)",
      ylab = "Resistência (MPa)")
 ```
 
 
 ```{r}
-plot(rca~pr, data = dados,
+plot(rca~ps, data = dados,
      xlab = "Proporção de resíduos (%)",
      ylab = "Resistência (MPa)")
 ```
@@ -230,30 +280,31 @@ plot(rca~pr, data = dados,
 
 # Ajustando modelo no R
 
-O ajuste ou estimação do modelo de regressão linear no R é relizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ pr, data = dados)`, informam que se deve estimar o modelo de rca "em função" de pr e que os valores estão armazanados no objeto `dados`.
+O ajuste ou estimação do modelo de regressão linear no R é relizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ ps, data = dados)`, informam que se deve estimar o modelo de *rca* "em função" de *ps* e que os valores estão armazanados no objeto `dados`.
 
 ```{r}
-mod <- lm(rca ~ pr, data = dados)
+mod <- lm(rca ~ ps, data = dados)
 summary(mod)
 ```
+
 
 # Qualidade do ajuste
 
 A qualidade do ajuste modelo é a avaliação da capacidade do modelo de regressão explicar as variações de valores da variável dependente, de fazer predições e quais variáveis ajudam nessa explicação. A seguir são descritas brevemente as medidas que permitem essas avaliações.
 
-A estatística **F Anova** (*F-statistic*) mede o efeito conjunto das variáveis independentes (fatores) sobre a variável dependente (resposta). Testa a hipótese nula de que nenhuma das variáveis independentes é capaz de descrever o comportamento da variável dependente. Para que o modelo de regressão proposto seja significativo, a hipótese nula deve ser rejeitada, em geral, quando $Valor-P < α = 0, 05$.
+A estatística **F Anova** (*F-statistic*) mede o efeito conjunto das variáveis independentes (fatores) sobre a variável dependente (resposta). Testa a hipótese nula de que nenhuma das variáveis independentes é capaz de descrever o comportamento da variável dependente. Para que o modelo de regressão proposto seja significativo, a hipótese nula deve ser rejeitada, em geral, quando $\text{Valor P} < \alpha = 0, 05$.
 
 O **Coeficiente de determinação** (*Multiple R-squared* - $R^2$) mede a proporção da variação explicada pela regressão e seu valor varia de 0 a 1, quanto maior esse valor, maior poder explicativo do modelo.
 
 No caso de regressão múltipla, o **Coeficiente de determinação ajustado** (*Adjusted R-squared*) mede a proporção da variação explicada pela regressão, mas penaliza o número de variáveis independentes, uma vez que modelos parcimoniosos são preferíveis por sua simplicidade, logo, o acréscimo de uma variável e da complexidade devem ser justificados por um aumento razoável no poder explicativo.
 
-O **Erro Padrão do Erro** , ou *Residual Standard Error*, também denominado Raiz do Erro Quadrático médio, ou *Root Mean Squared Error (RMSE)*, mede o grau de dispersão em torno da linha de regressão e quanto menor o seu valor, melhor. No R, é calculado pela seguite Equação:
+O **Erro Padrão Residual** , ou *Residual Standard Error*, também denominado Raiz do Erro Quadrático médio, ou *Root Mean Squared Error (RMSE)*, mede o grau de dispersão em torno da linha de regressão e quanto menor o seu valor, melhor. No R, é calculado pela seguite Equação:
 
 $$
 RMSE = \sqrt{\frac{\sum_{i=1}^n (y_i-\hat{y}_i)^2}{n-k}}
 $$
 
-onde onde RMSE é expressa na mesma unidade de y, *n* é o número de observações e *k*, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cáclulo do RSME, geralmente se dividem os desvios ao quadro por *n*, mas a divisão por $(n-k)$ permite a obtenção de um valor não viesado erro padrão do erro.
+onde RMSE é expressa na mesma unidade de y, *n* é o número de observações e *k*, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cáclulo do RSME, geralmente se dividem os desvios ao quadro por *n*, mas a divisão por $(n-k)$ permite a obtenção de um valor não viesado erro padrão do erro.
 
 ```{r}
 summary(mod)
@@ -348,8 +399,8 @@ qqline(mod$residuals)
 
 O teste de Shapiro-Wilk é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
 
--   $H_0$: Os dado seguem distribuição normal.
--   $H_1$: Os dado NÃO seguem distribuição normal.
+-   $H_0$: Os dados seguem distribuição normal.
+-   $H_1$: Os dados NÃO seguem distribuição normal.
 
 Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se $p<0,05$, caso contrário aceita-se a afirmação de normalidade. Então o que se espera é que $p>0,05$, indicando normalidade e continuidade da análise sem a violação desse pressuposto.
 
