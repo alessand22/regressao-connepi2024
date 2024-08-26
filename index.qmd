@@ -34,7 +34,9 @@ O modelo de regressão é certamente uma das técnicas estatísticas mais utiliz
 -   Como realizar os cálculos e gráficos dessas análise sem despesas?
 
 
-# Definição
+# O modelo de regressão
+
+## Definição do modelo
 
 A **regressão** é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* (Faraway 2002).
 
@@ -124,17 +126,19 @@ $$y_i = b_0 + b_1 X_1 + b_2 X_2 + \dots + b_k X_k+e_i\:,\:\: i=1,\dots,N$$
 
 $y_i$ é o valor da observado da variável dependente, *i* é o número da observação, *N* é o total de observações da amostra, $X_k$ são as variáveis independentes, $b_0$ é a estimativa do intercepto do modelo, $b_1,\dots,b_k$ são as estimativas dos coeficientes angulares, $e_i$ é o valor do termo aleatório ou resíduo.
 
-# Estimativa do modelo
+## Predição de valores
 
-Uma vez de posse da estimativa de $\beta$, o modelo permite estimar os valores da variável dependente contidos no vetor $\hat{y}$:
+Uma vez de posse da estimativa de $\beta$, o modelo permite predizer ou ajustar os valores da variável dependente contidos no vetor $\hat{y}$, para os valores de $X$:
 
 $$ \hat{y}_i=b_0 + b_1 X_i$$
+
+## Os resíduos
 
 O método dos MQO envolve encontrar $\mathbf{b}$ que minimize a soma dos quadrados dos resíduos. O resíduo ($e_i$) pode ser definido como a diferença entre o valor observado ($y_i$) é aquele calculado pelo modelo, denominado valor ajustado ou previsto ($\hat{y}$), podendo se expresso como abaixo
 
 $$e_i =y_i-\hat{y}_i$$
 
-Os residuos são ilustrados na @fig-residuos e são estimativas dos valores do termo aleatório $\epsilon$ os quais não são observáveis.
+Os resíduos são ilustrados na @fig-residuos e são estimativas dos valores do termo aleatório $\epsilon$ os quais não são observáveis.
 
 
 ```{r}
@@ -172,6 +176,8 @@ mtext("x", side=1, line=1, cex=1.5, las=1)
 ```
 
 
+## Teste dos parâmetros
+
 Dois testes de hipóteses sobre os parâmatros do modelo podem ser realizados a partir de suas estimativas. Pode-se testar o intercepto é zero, conforme a formulação a seguir:
 
  - $H_0: \beta_0=0$
@@ -185,8 +191,8 @@ Pode-se avaliar se cada uma das variáveis independentes ($X_k$) são capazes de
  
 As decisões dos testes de hipóteses acima são baseadas no teste t, conforme o nível de significãncia adotado (geralmente $\alpha=0,05$) nos valores P associados a essa estatística. **Rejeita-se a hipótese nula, caso o valor P seja inferior a 0,05.**
 
-
-# O que é o R?
+# Regressão no R
+## O que é o R?
 
 O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word. 
 
@@ -221,7 +227,7 @@ Durante este minicurso são utilizados os seguintes pacotes adicionais:
  - lmtest
  - car
 
-# O diretório de trabalho
+## O diretório de trabalho
 
 O *Working directory* ou diretório de trabalho, em português, é a pasta em que o R está salvando e lendo objetos. Logo é nesse diretório em que devem estar salvos os arquivos do seu projeto de análise.
 
@@ -243,16 +249,16 @@ setwd("meu/caminho")  # conf. diretório
 
 Uma alternativa mais confortável para configurar o diretório, é o uso do **Menu**: *Session/Setting Working Directory/Choose Directory*.
 
-# Lendo e examinando dados no R
+## Lendo e examinando dados no R
 
-Vamos modelar os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um determinado compósito cimentício. Os dados estão na primeira aba do arquivo do excel  [**dadosConnepi.xlsx**](dadosConnepi.xlsx) que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que já deve instalado no R porque não é um pacote básico.
+Vamos modelar os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um determinado compósito cimentício. Os dados estão na primeira aba, **ex1_compressao**, do arquivo do excel  [**dadosConnepi.xlsx**](dadosConnepi.xlsx) que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que já deve instalado no R porque não é um pacote básico.
 
 ```{r}
 #| eval: false
 install.packages("readxl")
 ```
 
-Carrega-se o pacote, os dados são importados coma função `read_excel()` e os dados são salvos no objeto `dados`. 
+Carrega-se o pacote e os dados podem ser importados com a função `read_excel()` e salvos no objeto `dados`. 
 
 Os valores do objeto `dados` podem ser exibidos no console pelo seu nome. As colunas podem ser acessadas, com o uso dos cifrões. A estrutura dos dados pode ser exibida com a função `str()`.
 
@@ -284,13 +290,34 @@ plot(rca~ps, data = dados,
 ```
 
 
-# Ajustando modelo no R
 
-O ajuste ou estimação do modelo de regressão linear no R é relizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ ps, data = dados)`, informam que se deve estimar o modelo de *rca* "em função" de *ps* e que os valores estão armazanados no objeto `dados`.
+O ajuste ou estimação do modelo de regressão linear no R é realizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ ps, data = dados)`, informam que se deve estimar o modelo de *rca* "em função" de *ps* e que os valores estão armazanados no objeto `dados`.
 
 ```{r}
 mod <- lm(rca ~ ps, data = dados)
 summary(mod)
+```
+
+## Predizendo valores no R
+
+Os valores ajustados para o valores das variáveis independentes pode ser para os valores $X$ da amostra e para outros valores. O valores ajustados da amostra já estão armazenados no objeto `mod`, sendo acessado com o cifrão:
+
+```{r}
+mod$fitted.values
+```
+
+Para outros valores de X, pode-se utilizar a função `predict()` que utiliza o modelo armazenado no objeto, `mod` neste exemplo, e o novos valores num objeto do tipo data frame.
+
+```{r}
+# defina os novos valores
+dadosnovos <- data.frame(ps=15)
+
+# Use o modelo para predições
+predict(mod, dadosnovos)
+
+dadosnovos <- data.frame(ps=c(15, 16, 17))
+
+predict(mod, dadosnovos)
 ```
 
 
@@ -310,13 +337,15 @@ $$
 RMSE = \sqrt{\frac{\sum_{i=1}^n (y_i-\hat{y}_i)^2}{n-k}}
 $$
 
-onde RMSE é expressa na mesma unidade de y, *n* é o número de observações e *k*, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cáclulo do RSME, geralmente se dividem os desvios ao quadro por *n*, mas a divisão por $(n-k)$ permite a obtenção de um valor não viesado erro padrão do erro.
+onde RMSE é expressa na mesma unidade de y, *n* é o número de observações e *k*, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cálculo do RSME, geralmente se dividem os desvios ao quadro por *n*, mas a divisão por $(n-k)$ permite a obtenção de um valor não viesado erro padrão do erro.
 
 ```{r}
 summary(mod)
 ```
 
 # Pressupostos do Modelo de Regressão
+
+## Os pressupostos
 
 1.  **Linearidade** A relação entre as variáveis explicativas e a variável dependente é linear. A linearidade pode ser avaliada através da inspeção dos gráficos de dispersão ou de resíduos.
 
@@ -366,7 +395,7 @@ $$E(y|X)=\beta_0+\beta_1X_1+\dots+\beta_kX_k$$
 
 : Pressuspostos e técnicas de exame
 
-# Avaliação dos pressupostos
+## Avaliação dos pressupostos
 
 A avaliação dos pressupostos da regressão, na maior parte, é realizada por meio de exames dos resíduos na forma de gráficos e de testes estatísticos. No R, alguns exames podem ser aplicados diretamente ao objeto em que o modelo foi salvo, mas outros exigem que os valores dos resíduos sejam extraídos.
 
@@ -496,5 +525,81 @@ No comando de gráficos de diagnósticos, identifique que deve ser exibido somen
 plot(mod, which = 4)
 ```
 
+# O modelo final
+
+Após constatação de que os pressupostos do da regressão linear não foram violados, o modelo que descreve os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um compósito cimentício é o seguinte:
+
+$$
+\hat{y_i}= 10,0953 - 0,29440 X_i
+$$
+
+Condiderando que se trata de uma regressão simples, pode-se elaborar um gráfico para publicação com os seguinte código:
+
+```{r}
+plot(rca ~ ps, 
+     data=dados, pch = 19, col = "blue",
+     xlab = "Proporção de resíduos (%)",
+     ylab = "Resistência à Compressão")
+
+abline(mod, col = "red", lwd = 1.5)
+```
+
+
 # Praticando
+
+
+Suponha que desejamos estimar os custos indiretos fabrição de uma fábrica de doces. Os dados mensais dos custos indiretos de fabricação, custos de embalagens, produção em toneladas e despesas de divulgação estão na aba **ex2_fabrica** do arquivo do excel [**dadosConnepi.xlsx**](dadosConnepi.xlsx) e cujas seis primeiras linhas são exibidas na @tbl-fabrica.
+
+```{r}
+#| echo: false
+#| label: tbl-fabrica
+#| tbl-cap: "Primeiras seis observaçoes dos dados de custos mensais de uma fábrica de doces"
+#| tbl-cap-location: top
+fabrica <- read_excel("dadosConnepi.xlsx", 
+                      sheet = "ex2_fabrica")
+library(knitr)
+  fabrica |> 
+    head() |> 
+    kable() 
+```
+
+Com base nas informaçoes forncecidas, faça o que se pede:
+
+a. Importe dos dados
+b. Ajuste o modelo de regressão linear dos ci em função da embalagem, toneladas e divulgação.
+c. Avalie o ajuste do modelo
+d. Examine os pressupostos de linearidade , homocedasticidade e normalidade
+e examine a presença de valores atípicos
+avalia a significância do efeito das variáveis independentes.
+f. Decida qual o modelo descritivo.
+
+
+**SCRIP DE RESOLUÇÃO SUGERIDO**
+
+```{r}
+#| eval: false
+
+fabrica <- read_excel("dadosConnepi.xlsx", 
+                      sheet = "ex2_fabrica")
+
+mod2 <- lm(ci ~ embalagem + toneladas + divulgacao, data = fabrica)
+
+options(scipen = 999) # Desativa notação cient.
+summary(mod2)
+
+par(mfrow = c(2,2))
+plot(mod2)
+par(mfrow = c(1,1))
+
+shapiro.test(mod$residuals)
+library(lmtest) # carrega pacote
+bptest(mod)
+
+
+mod3 <- lm(ci ~ embalagem + toneladas, data = fabrica)
+
+par(mfrow = c(2,2))
+plot(mod3)
+par(mfrow = c(1,1))
+```
 

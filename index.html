@@ -112,16 +112,28 @@ window.Quarto = {
   <ul>
   <li><a href="#apresentação" id="toc-apresentação" class="nav-link active" data-scroll-target="#apresentação"><span class="header-section-number">1</span> Apresentação</a></li>
   <li><a href="#por-que-regressão" id="toc-por-que-regressão" class="nav-link" data-scroll-target="#por-que-regressão"><span class="header-section-number">2</span> Por que regressão?</a></li>
-  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">3</span> Definição</a></li>
-  <li><a href="#estimativa-do-modelo" id="toc-estimativa-do-modelo" class="nav-link" data-scroll-target="#estimativa-do-modelo"><span class="header-section-number">4</span> Estimativa do modelo</a></li>
-  <li><a href="#o-que-é-o-r" id="toc-o-que-é-o-r" class="nav-link" data-scroll-target="#o-que-é-o-r"><span class="header-section-number">5</span> O que é o R?</a></li>
-  <li><a href="#o-diretório-de-trabalho" id="toc-o-diretório-de-trabalho" class="nav-link" data-scroll-target="#o-diretório-de-trabalho"><span class="header-section-number">6</span> O diretório de trabalho</a></li>
-  <li><a href="#lendo-e-examinando-dados-no-r" id="toc-lendo-e-examinando-dados-no-r" class="nav-link" data-scroll-target="#lendo-e-examinando-dados-no-r"><span class="header-section-number">7</span> Lendo e examinando dados no R</a></li>
-  <li><a href="#ajustando-modelo-no-r" id="toc-ajustando-modelo-no-r" class="nav-link" data-scroll-target="#ajustando-modelo-no-r"><span class="header-section-number">8</span> Ajustando modelo no R</a></li>
-  <li><a href="#qualidade-do-ajuste" id="toc-qualidade-do-ajuste" class="nav-link" data-scroll-target="#qualidade-do-ajuste"><span class="header-section-number">9</span> Qualidade do ajuste</a></li>
-  <li><a href="#pressupostos-do-modelo-de-regressão" id="toc-pressupostos-do-modelo-de-regressão" class="nav-link" data-scroll-target="#pressupostos-do-modelo-de-regressão"><span class="header-section-number">10</span> Pressupostos do Modelo de Regressão</a></li>
-  <li><a href="#avaliação-dos-pressupostos" id="toc-avaliação-dos-pressupostos" class="nav-link" data-scroll-target="#avaliação-dos-pressupostos"><span class="header-section-number">11</span> Avaliação dos pressupostos</a></li>
-  <li><a href="#praticando" id="toc-praticando" class="nav-link" data-scroll-target="#praticando"><span class="header-section-number">12</span> Praticando</a></li>
+  <li><a href="#o-modelo-de-regressão" id="toc-o-modelo-de-regressão" class="nav-link" data-scroll-target="#o-modelo-de-regressão"><span class="header-section-number">3</span> O modelo de regressão</a>
+  <ul class="collapse">
+  <li><a href="#definição-do-modelo" id="toc-definição-do-modelo" class="nav-link" data-scroll-target="#definição-do-modelo"><span class="header-section-number">3.1</span> Definição do modelo</a></li>
+  <li><a href="#predição-de-valores" id="toc-predição-de-valores" class="nav-link" data-scroll-target="#predição-de-valores"><span class="header-section-number">3.2</span> Predição de valores</a></li>
+  <li><a href="#os-resíduos" id="toc-os-resíduos" class="nav-link" data-scroll-target="#os-resíduos"><span class="header-section-number">3.3</span> Os resíduos</a></li>
+  <li><a href="#teste-dos-parâmetros" id="toc-teste-dos-parâmetros" class="nav-link" data-scroll-target="#teste-dos-parâmetros"><span class="header-section-number">3.4</span> Teste dos parâmetros</a></li>
+  </ul></li>
+  <li><a href="#regressão-no-r" id="toc-regressão-no-r" class="nav-link" data-scroll-target="#regressão-no-r"><span class="header-section-number">4</span> Regressão no R</a>
+  <ul class="collapse">
+  <li><a href="#o-que-é-o-r" id="toc-o-que-é-o-r" class="nav-link" data-scroll-target="#o-que-é-o-r"><span class="header-section-number">4.1</span> O que é o R?</a></li>
+  <li><a href="#o-diretório-de-trabalho" id="toc-o-diretório-de-trabalho" class="nav-link" data-scroll-target="#o-diretório-de-trabalho"><span class="header-section-number">4.2</span> O diretório de trabalho</a></li>
+  <li><a href="#lendo-e-examinando-dados-no-r" id="toc-lendo-e-examinando-dados-no-r" class="nav-link" data-scroll-target="#lendo-e-examinando-dados-no-r"><span class="header-section-number">4.3</span> Lendo e examinando dados no R</a></li>
+  <li><a href="#predizendo-valores-no-r" id="toc-predizendo-valores-no-r" class="nav-link" data-scroll-target="#predizendo-valores-no-r"><span class="header-section-number">4.4</span> Predizendo valores no R</a></li>
+  </ul></li>
+  <li><a href="#qualidade-do-ajuste" id="toc-qualidade-do-ajuste" class="nav-link" data-scroll-target="#qualidade-do-ajuste"><span class="header-section-number">5</span> Qualidade do ajuste</a></li>
+  <li><a href="#pressupostos-do-modelo-de-regressão" id="toc-pressupostos-do-modelo-de-regressão" class="nav-link" data-scroll-target="#pressupostos-do-modelo-de-regressão"><span class="header-section-number">6</span> Pressupostos do Modelo de Regressão</a>
+  <ul class="collapse">
+  <li><a href="#os-pressupostos" id="toc-os-pressupostos" class="nav-link" data-scroll-target="#os-pressupostos"><span class="header-section-number">6.1</span> Os pressupostos</a></li>
+  <li><a href="#avaliação-dos-pressupostos" id="toc-avaliação-dos-pressupostos" class="nav-link" data-scroll-target="#avaliação-dos-pressupostos"><span class="header-section-number">6.2</span> Avaliação dos pressupostos</a></li>
+  </ul></li>
+  <li><a href="#o-modelo-final" id="toc-o-modelo-final" class="nav-link" data-scroll-target="#o-modelo-final"><span class="header-section-number">7</span> O modelo final</a></li>
+  <li><a href="#praticando" id="toc-praticando" class="nav-link" data-scroll-target="#praticando"><span class="header-section-number">8</span> Praticando</a></li>
   </ul>
 </nav>
 </div>
@@ -186,8 +198,10 @@ window.Quarto = {
 <li>Como realizar os cálculos e gráficos dessas análise sem despesas?</li>
 </ul>
 </section>
-<section id="definição" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Definição</h1>
+<section id="o-modelo-de-regressão" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> O modelo de regressão</h1>
+<section id="definição-do-modelo" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="definição-do-modelo"><span class="header-section-number">3.1</span> Definição do modelo</h2>
 <p>A <strong>regressão</strong> é uma técnica utilizada para explicar e modelar a relação entre uma variável <em>y</em> , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, <em>x1</em>,…,<em>xk</em> (Faraway 2002).</p>
 <p><span class="math display">\[y = f(x_1, x_2, \dots, x_k)\]</span></p>
 <p>A variável dependente deve ser contínua, mas a(s) variável(is) independentes de podem ser contínuas, discretas ou categóricas.</p>
@@ -246,13 +260,16 @@ Figura&nbsp;1: A reta de regressão
 <p><span class="math display">\[y_i = b_0 + b_1 X_1 + b_2 X_2 + \dots + b_k X_k+e_i\:,\:\: i=1,\dots,N\]</span></p>
 <p><span class="math inline">\(y_i\)</span> é o valor da observado da variável dependente, <em>i</em> é o número da observação, <em>N</em> é o total de observações da amostra, <span class="math inline">\(X_k\)</span> são as variáveis independentes, <span class="math inline">\(b_0\)</span> é a estimativa do intercepto do modelo, <span class="math inline">\(b_1,\dots,b_k\)</span> são as estimativas dos coeficientes angulares, <span class="math inline">\(e_i\)</span> é o valor do termo aleatório ou resíduo.</p>
 </section>
-<section id="estimativa-do-modelo" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Estimativa do modelo</h1>
-<p>Uma vez de posse da estimativa de <span class="math inline">\(\beta\)</span>, o modelo permite estimar os valores da variável dependente contidos no vetor <span class="math inline">\(\hat{y}\)</span>:</p>
+<section id="predição-de-valores" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="predição-de-valores"><span class="header-section-number">3.2</span> Predição de valores</h2>
+<p>Uma vez de posse da estimativa de <span class="math inline">\(\beta\)</span>, o modelo permite predizer ou ajustar os valores da variável dependente contidos no vetor <span class="math inline">\(\hat{y}\)</span>, para os valores de <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[ \hat{y}_i=b_0 + b_1 X_i\]</span></p>
+</section>
+<section id="os-resíduos" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="os-resíduos"><span class="header-section-number">3.3</span> Os resíduos</h2>
 <p>O método dos MQO envolve encontrar <span class="math inline">\(\mathbf{b}\)</span> que minimize a soma dos quadrados dos resíduos. O resíduo (<span class="math inline">\(e_i\)</span>) pode ser definido como a diferença entre o valor observado (<span class="math inline">\(y_i\)</span>) é aquele calculado pelo modelo, denominado valor ajustado ou previsto (<span class="math inline">\(\hat{y}\)</span>), podendo se expresso como abaixo</p>
 <p><span class="math display">\[e_i =y_i-\hat{y}_i\]</span></p>
-<p>Os residuos são ilustrados na <a href="#fig-residuos" class="quarto-xref">Figura&nbsp;2</a> e são estimativas dos valores do termo aleatório <span class="math inline">\(\epsilon\)</span> os quais não são observáveis.</p>
+<p>Os resíduos são ilustrados na <a href="#fig-residuos" class="quarto-xref">Figura&nbsp;2</a> e são estimativas dos valores do termo aleatório <span class="math inline">\(\epsilon\)</span> os quais não são observáveis.</p>
 <div class="cell fig-cap-location-top" data-cap-location="top">
 <div class="cell-output-display">
 <div id="fig-residuos" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
@@ -267,6 +284,9 @@ Figura&nbsp;2: Os resíduos
 </div>
 </div>
 </div>
+</section>
+<section id="teste-dos-parâmetros" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="teste-dos-parâmetros"><span class="header-section-number">3.4</span> Teste dos parâmetros</h2>
 <p>Dois testes de hipóteses sobre os parâmatros do modelo podem ser realizados a partir de suas estimativas. Pode-se testar o intercepto é zero, conforme a formulação a seguir:</p>
 <ul>
 <li><span class="math inline">\(H_0: \beta_0=0\)</span></li>
@@ -279,8 +299,11 @@ Figura&nbsp;2: Os resíduos
 </ul>
 <p>As decisões dos testes de hipóteses acima são baseadas no teste t, conforme o nível de significãncia adotado (geralmente <span class="math inline">\(\alpha=0,05\)</span>) nos valores P associados a essa estatística. <strong>Rejeita-se a hipótese nula, caso o valor P seja inferior a 0,05.</strong></p>
 </section>
-<section id="o-que-é-o-r" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> O que é o R?</h1>
+</section>
+<section id="regressão-no-r" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Regressão no R</h1>
+<section id="o-que-é-o-r" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="o-que-é-o-r"><span class="header-section-number">4.1</span> O que é o R?</h2>
 <p>O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word.</p>
 <p>O programas podem ser baixados para instalaçao nos seguintes endereços.</p>
 <ul>
@@ -305,8 +328,8 @@ Figura&nbsp;2: Os resíduos
 <li>car</li>
 </ul>
 </section>
-<section id="o-diretório-de-trabalho" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> O diretório de trabalho</h1>
+<section id="o-diretório-de-trabalho" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="o-diretório-de-trabalho"><span class="header-section-number">4.2</span> O diretório de trabalho</h2>
 <p>O <em>Working directory</em> ou diretório de trabalho, em português, é a pasta em que o R está salvando e lendo objetos. Logo é nesse diretório em que devem estar salvos os arquivos do seu projeto de análise.</p>
 <p>A função <code>getwd()</code> exibe o diretório de trabalho atual.</p>
 <div class="cell">
@@ -319,13 +342,13 @@ Figura&nbsp;2: Os resíduos
 </div>
 <p>Uma alternativa mais confortável para configurar o diretório, é o uso do <strong>Menu</strong>: <em>Session/Setting Working Directory/Choose Directory</em>.</p>
 </section>
-<section id="lendo-e-examinando-dados-no-r" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Lendo e examinando dados no R</h1>
-<p>Vamos modelar os efeitos da proporção de substituição (<strong>ps</strong>) de agregados por resíduos de algum material sobre a resistência à compressão axial (<strong>rca</strong>) de um determinado compósito cimentício. Os dados estão na primeira aba do arquivo do excel <a href="dadosConnepi.xlsx"><strong>dadosConnepi.xlsx</strong></a> que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função <code>read_excel()</code> do pacote <strong>readxl</strong> que já deve instalado no R porque não é um pacote básico.</p>
+<section id="lendo-e-examinando-dados-no-r" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="lendo-e-examinando-dados-no-r"><span class="header-section-number">4.3</span> Lendo e examinando dados no R</h2>
+<p>Vamos modelar os efeitos da proporção de substituição (<strong>ps</strong>) de agregados por resíduos de algum material sobre a resistência à compressão axial (<strong>rca</strong>) de um determinado compósito cimentício. Os dados estão na primeira aba, <strong>ex1_compressao</strong>, do arquivo do excel <a href="dadosConnepi.xlsx"><strong>dadosConnepi.xlsx</strong></a> que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função <code>read_excel()</code> do pacote <strong>readxl</strong> que já deve instalado no R porque não é um pacote básico.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Carrega-se o pacote, os dados são importados coma função <code>read_excel()</code> e os dados são salvos no objeto <code>dados</code>.</p>
+<p>Carrega-se o pacote e os dados podem ser importados com a função <code>read_excel()</code> e salvos no objeto <code>dados</code>.</p>
 <p>Os valores do objeto <code>dados</code> podem ser exibidos no console pelo seu nome. As colunas podem ser acessadas, com o uso dos cifrões. A estrutura dos dados pode ser exibida com a função <code>str()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -388,10 +411,7 @@ Figura&nbsp;2: Os resíduos
 </div>
 </div>
 </div>
-</section>
-<section id="ajustando-modelo-no-r" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Ajustando modelo no R</h1>
-<p>O ajuste ou estimação do modelo de regressão linear no R é relizado pela função <code>lm()</code>. Os argumentos devem ser inseridos na forma de fórmula. Os argumento <code>(rca ~ ps, data = dados)</code>, informam que se deve estimar o modelo de <em>rca</em> “em função” de <em>ps</em> e que os valores estão armazanados no objeto <code>dados</code>.</p>
+<p>O ajuste ou estimação do modelo de regressão linear no R é realizado pela função <code>lm()</code>. Os argumentos devem ser inseridos na forma de fórmula. Os argumento <code>(rca ~ ps, data = dados)</code>, informam que se deve estimar o modelo de <em>rca</em> “em função” de <em>ps</em> e que os valores estão armazanados no objeto <code>dados</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(rca <span class="sc">~</span> ps, <span class="at">data =</span> dados)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -417,8 +437,41 @@ F-statistic: 112.5 on 1 and 13 DF,  p-value: 9.031e-08</code></pre>
 </div>
 </div>
 </section>
-<section id="qualidade-do-ajuste" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Qualidade do ajuste</h1>
+<section id="predizendo-valores-no-r" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="predizendo-valores-no-r"><span class="header-section-number">4.4</span> Predizendo valores no R</h2>
+<p>Os valores ajustados para o valores das variáveis independentes pode ser para os valores <span class="math inline">\(X\)</span> da amostra e para outros valores. O valores ajustados da amostra já estão armazenados no objeto <code>mod</code>, sendo acessado com o cifrão:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mod<span class="sc">$</span>fitted.values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6         7         8 
+10.095333 10.095333 10.095333 10.095333 10.095333  7.151333  7.151333  7.151333 
+        9        10        11        12        13        14        15 
+ 7.151333  7.151333  4.207333  4.207333  4.207333  4.207333  4.207333 </code></pre>
+</div>
+</div>
+<p>Para outros valores de X, pode-se utilizar a função <code>predict()</code> que utiliza o modelo armazenado no objeto, <code>mod</code> neste exemplo, e o novos valores num objeto do tipo data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># defina os novos valores</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>dadosnovos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ps=</span><span class="dv">15</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use o modelo para predições</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mod, dadosnovos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+5.679333 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dadosnovos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ps=</span><span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mod, dadosnovos)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+5.679333 5.384933 5.090533 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="qualidade-do-ajuste" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Qualidade do ajuste</h1>
 <p>A qualidade do ajuste modelo é a avaliação da capacidade do modelo de regressão explicar as variações de valores da variável dependente, de fazer predições e quais variáveis ajudam nessa explicação. A seguir são descritas brevemente as medidas que permitem essas avaliações.</p>
 <p>A estatística <strong>F Anova</strong> (<em>F-statistic</em>) mede o efeito conjunto das variáveis independentes (fatores) sobre a variável dependente (resposta). Testa a hipótese nula de que nenhuma das variáveis independentes é capaz de descrever o comportamento da variável dependente. Para que o modelo de regressão proposto seja significativo, a hipótese nula deve ser rejeitada, em geral, quando <span class="math inline">\(\text{Valor P} &lt; \alpha = 0, 05\)</span>.</p>
 <p>O <strong>Coeficiente de determinação</strong> (<em>Multiple R-squared</em> - <span class="math inline">\(R^2\)</span>) mede a proporção da variação explicada pela regressão e seu valor varia de 0 a 1, quanto maior esse valor, maior poder explicativo do modelo.</p>
@@ -427,9 +480,9 @@ F-statistic: 112.5 on 1 and 13 DF,  p-value: 9.031e-08</code></pre>
 <p><span class="math display">\[
 RMSE = \sqrt{\frac{\sum_{i=1}^n (y_i-\hat{y}_i)^2}{n-k}}
 \]</span></p>
-<p>onde RMSE é expressa na mesma unidade de y, <em>n</em> é o número de observações e <em>k</em>, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cáclulo do RSME, geralmente se dividem os desvios ao quadro por <em>n</em>, mas a divisão por <span class="math inline">\((n-k)\)</span> permite a obtenção de um valor não viesado erro padrão do erro.</p>
+<p>onde RMSE é expressa na mesma unidade de y, <em>n</em> é o número de observações e <em>k</em>, o número de parâmetros a serem estimados, o demoninador indica o número de graus de liberdade. Importante ressaltar que, no cálculo do RSME, geralmente se dividem os desvios ao quadro por <em>n</em>, mas a divisão por <span class="math inline">\((n-k)\)</span> permite a obtenção de um valor não viesado erro padrão do erro.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -452,8 +505,10 @@ F-statistic: 112.5 on 1 and 13 DF,  p-value: 9.031e-08</code></pre>
 </div>
 </div>
 </section>
-<section id="pressupostos-do-modelo-de-regressão" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Pressupostos do Modelo de Regressão</h1>
+<section id="pressupostos-do-modelo-de-regressão" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Pressupostos do Modelo de Regressão</h1>
+<section id="os-pressupostos" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="os-pressupostos"><span class="header-section-number">6.1</span> Os pressupostos</h2>
 <ol type="1">
 <li><p><strong>Linearidade</strong> A relação entre as variáveis explicativas e a variável dependente é linear. A linearidade pode ser avaliada através da inspeção dos gráficos de dispersão ou de resíduos.</p></li>
 <li><p><strong>Homocedasticidade</strong>: A variância dos resíduos é constante para todos os valores de <em>X</em>. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (b) e ou se altera com algum padrão, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (c), diz-se que o modelo apresenta heterocedasticidade.</p></li>
@@ -529,12 +584,12 @@ Figura&nbsp;3: Homocedasticidade e heterocedasticidade
 </tbody>
 </table>
 </section>
-<section id="avaliação-dos-pressupostos" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Avaliação dos pressupostos</h1>
+<section id="avaliação-dos-pressupostos" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="avaliação-dos-pressupostos"><span class="header-section-number">6.2</span> Avaliação dos pressupostos</h2>
 <p>A avaliação dos pressupostos da regressão, na maior parte, é realizada por meio de exames dos resíduos na forma de gráficos e de testes estatísticos. No R, alguns exames podem ser aplicados diretamente ao objeto em que o modelo foi salvo, mas outros exigem que os valores dos resíduos sejam extraídos.</p>
 <p>Os valores do modelo salvo em <code>mod</code> podem ser acessado com o uso do cifrão. Digite o nome do objeto acrescente o cifrão que uma lista de valores será apresentada. Nos comandos a seguir são extraídos os valores dos resíduos e os valores ajustados do modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mod<span class="sc">$</span>residuals</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mod<span class="sc">$</span>residuals</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          1           2           3           4           5           6 
 -0.65533333 -0.32533333  1.46466667 -0.02533333  0.03466667  1.56866667 
@@ -543,7 +598,7 @@ Figura&nbsp;3: Homocedasticidade e heterocedasticidade
          13          14          15 
  0.19266667 -0.09733333 -0.76733333 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mod<span class="sc">$</span>fitted.values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mod<span class="sc">$</span>fitted.values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        1         2         3         4         5         6         7         8 
 10.095333 10.095333 10.095333 10.095333 10.095333  7.151333  7.151333  7.151333 
@@ -553,8 +608,8 @@ Figura&nbsp;3: Homocedasticidade e heterocedasticidade
 </div>
 <p>A <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a> é um gráfico de dispersão de resíduos em função dos valores ajustados e permite o exame visual da <strong>linearidade</strong> do modelo da <strong>homocedasticidade</strong>. A linha horizontal foi traçada na altura da média dos resíduos.</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode cell-code" id="cb22" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>fitted.values, mod<span class="sc">$</span>residuals)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(mod<span class="sc">$</span>residuals), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod<span class="sc">$</span>fitted.values, mod<span class="sc">$</span>residuals)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(mod<span class="sc">$</span>residuals), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-resfit" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
@@ -572,8 +627,8 @@ Figura&nbsp;4: Resíduos em função dos valores ajustados
 <p>O <em>Normal Q-Q plot</em> é utilizado para exame visual da normalidade das observações, podendo ser elaborado com as funções <code>qqnorm()</code> e <code>qqline()</code>, tendo como principal argumento os resíduos do modelo. Caso os dados sejam normalmente distribuídos os pontos devem se situar aleatoriamente próximos à reta.</p>
 <p>O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está próximo da, no entanto, três valores se afastam mais, exigindo um exame formal para verificar se esse afastamento é grave.</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode cell-code" id="cb23" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(mod<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(mod<span class="sc">$</span>residuals, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-qqplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
@@ -595,7 +650,7 @@ Figura&nbsp;5: Resíduos em função dos valores ajustados
 <p>Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se <span class="math inline">\(p&lt;0,05\)</span>, caso contrário aceita-se a afirmação de normalidade. Então o que se espera é que <span class="math inline">\(p&gt;0,05\)</span>, indicando normalidade e continuidade da análise sem a violação desse pressuposto.</p>
 <p>A função <code>shapiro.test()</code> exibe os valores da estatística de teste (<em>W</em>), que é uma qui-quadrado, e o <em>valor P</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -613,12 +668,12 @@ W = 0.94907, p-value = 0.51</code></pre>
 <p>Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se <span class="math inline">\(p&lt;0,05\)</span>, indicando a presença de heterocedasticidade, caso contrário aceita-se a afirmação de homocedasticidade.</p>
 <p>A função <code>bptest()</code> do pacote <strong>lmtest</strong> efetua o teste de Breusch-Pagan, mas antes o pacote precisa ser instalado por meio da função <code>install.packages()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lmtest"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lmtest"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>No resultado do função, BP corresponde à estística de teste e o seu correspondente valor P = 0.7031, por ser superior 0,05, é não é significante, de forma que não se pode rejeitar a hipótese nula e indica homocedasticidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     studentized Breusch-Pagan test
@@ -637,8 +692,8 @@ BP = 0.14522, df = 1, p-value = 0.7031</code></pre>
 </ol>
 <p>Todavia, é mais confortável, dividir-se a janela gráfica e quatro partes e se apresentar todos juntos para um exame mais rápido. A divisão da janela em 2 linhas e 2 colunas é relizada com o comando <code>par(mfrow = c(2,2))</code>. Em seguida, digita-se o comando para geração dos 4 gráficos de diagnósticos do modelo, conforme apresentados na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;6</a>.</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode cell-code" id="cb29" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagnosticos" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
@@ -688,22 +743,148 @@ Figura&nbsp;6: Gráficos de diagnóstico do modelo
 <p>O Residuals vs Leverage na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;6</a> não exibe observações ultrapassando alguma linha de corte da distância de Cook, aliás apenas parte uma linha de D=0,5 aparace no canto superior direito do gráfico, de modo que não há indícios de valores atípicos na amostra.</p>
 <p>Um gráfico com os valores individuais da distância de Cook podem ser exibidos num único gráfico. Para retornar para uma janela sem divisão basta digitar <code>par(mfrow = c(1,1))</code> e o próximo gráfico será gerado em janela única.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>No comando de gráficos de diagnósticos, identifique que deve ser exibido somente o quarto gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="praticando" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Praticando</h1>
+</section>
+<section id="o-modelo-final" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> O modelo final</h1>
+<p>Após constatação de que os pressupostos do da regressão linear não foram violados, o modelo que descreve os efeitos da proporção de substituição (<strong>ps</strong>) de agregados por resíduos de algum material sobre a resistência à compressão axial (<strong>rca</strong>) de um compósito cimentício é o seguinte:</p>
+<p><span class="math display">\[
+\hat{y_i}= 10,0953 - 0,29440 X_i
+\]</span></p>
+<p>Condiderando que se trata de uma regressão simples, pode-se elaborar um gráfico para publicação com os seguinte código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rca <span class="sc">~</span> ps, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data=</span>dados, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Proporção de resíduos (%)"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Resistência à Compressão"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="praticando" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Praticando</h1>
+<p>Suponha que desejamos estimar os custos indiretos fabrição de uma fábrica de doces. Os dados mensais dos custos indiretos de fabricação, custos de embalagens, produção em toneladas e despesas de divulgação estão na aba <strong>ex2_fabrica</strong> do arquivo do excel <a href="dadosConnepi.xlsx"><strong>dadosConnepi.xlsx</strong></a> e cujas seis primeiras linhas são exibidas na <a href="#tbl-fabrica" class="quarto-xref">Tabela&nbsp;1</a>.</p>
+<div class="cell" data-tbl-cap-location="top">
+<div id="tbl-fabrica" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fabrica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: Primeiras seis observaçoes dos dados de custos mensais de uma fábrica de doces
+</figcaption>
+<div aria-describedby="tbl-fabrica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">data</th>
+<th style="text-align: right;">ci</th>
+<th style="text-align: right;">embalagem</th>
+<th style="text-align: right;">toneladas</th>
+<th style="text-align: right;">divulgacao</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2015-01-01</td>
+<td style="text-align: right;">218501.0</td>
+<td style="text-align: right;">2790.90</td>
+<td style="text-align: right;">42.3</td>
+<td style="text-align: right;">253.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2015-02-01</td>
+<td style="text-align: right;">209982.3</td>
+<td style="text-align: right;">2866.50</td>
+<td style="text-align: right;">29.7</td>
+<td style="text-align: right;">877.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015-03-01</td>
+<td style="text-align: right;">228401.9</td>
+<td style="text-align: right;">2573.55</td>
+<td style="text-align: right;">53.1</td>
+<td style="text-align: right;">575.83</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2015-04-01</td>
+<td style="text-align: right;">176657.2</td>
+<td style="text-align: right;">1584.45</td>
+<td style="text-align: right;">54.0</td>
+<td style="text-align: right;">909.86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015-05-01</td>
+<td style="text-align: right;">207152.2</td>
+<td style="text-align: right;">2178.75</td>
+<td style="text-align: right;">53.1</td>
+<td style="text-align: right;">1178.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2015-06-01</td>
+<td style="text-align: right;">249873.8</td>
+<td style="text-align: right;">3082.80</td>
+<td style="text-align: right;">55.8</td>
+<td style="text-align: right;">1025.11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Com base nas informaçoes forncecidas, faça o que se pede:</p>
+<ol type="a">
+<li>Importe dos dados</li>
+<li>Ajuste o modelo de regressão linear dos ci em função da embalagem, toneladas e divulgação.</li>
+<li>Avalie o ajuste do modelo</li>
+<li>Examine os pressupostos de linearidade , homocedasticidade e normalidade e examine a presença de valores atípicos avalia a significância do efeito das variáveis independentes.</li>
+<li>Decida qual o modelo descritivo.</li>
+</ol>
+<p><strong>SCRIP DE RESOLUÇÃO SUGERIDO</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fabrica <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dadosConnepi.xlsx"</span>, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"ex2_fabrica"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas <span class="sc">+</span> divulgacao, <span class="at">data =</span> fabrica)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Desativa notação cient.</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod2)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest) <span class="co"># carrega pacote</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas, <span class="at">data =</span> fabrica)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 </main>
