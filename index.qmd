@@ -13,6 +13,8 @@ format:
     toc: true
     number-sections: true
     toc-location: left
+bibliography: referencias.bib
+csl: associacao-brasileira-de-normas-tecnicas-ipea.csl
 ---
 
 # Apresentação
@@ -38,7 +40,7 @@ O modelo de regressão é certamente uma das técnicas estatísticas mais utiliz
 
 ## Definição do modelo
 
-A **regressão** é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* (Faraway 2002).
+A **regressão** é uma técnica utilizada para explicar e modelar a relação entre uma variável *y* , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, *x1*,…,*xk* [@faraway2002practical].
 
 $$y = f(x_1, x_2, \dots, x_k)$$
 
@@ -416,7 +418,7 @@ plot(mod$fitted.values, mod$residuals)
 abline(h = mean(mod$residuals), lty = 2, col = "red")
 ```
 
-A **normalidade** pode ser examinda por meio do gráfico quantil-quantil (*Normal qqplot*) e de um teste de aderência, aqui utilizaremos o teste de Shapiro-Wilk.
+A **normalidade** pode ser examinda por meio do gráfico quantil-quantil (*Normal qqplot*) e de um teste de aderência, aqui utilizaremos o teste de Shapiro-Wilk [@shapiro1965analysis].
 
 O *Normal Q-Q plot* é utilizado para exame visual da normalidade das observações, podendo ser elaborado com as funções `qqnorm()` e `qqline()`, tendo como principal argumento os resíduos do modelo. Caso os dados sejam normalmente distribuídos os pontos devem se situar aleatoriamente próximos à reta.
 
@@ -432,7 +434,7 @@ qqnorm(mod$residuals, col = "red")
 qqline(mod$residuals)
 ```
 
-O teste de Shapiro-Wilk é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
+O teste de Shapiro-Wilk [@shapiro1965analysis] é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
 
 -   $H_0$: Os dados seguem distribuição normal.
 -   $H_1$: Os dados NÃO seguem distribuição normal.
@@ -445,9 +447,9 @@ A função `shapiro.test()` exibe os valores da estatística de teste (*W*), que
 shapiro.test(mod$residuals)
 ```
 
-A análise da **homecedasticidade** pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na @fig-resfit, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan.
+A análise da **homecedasticidade** pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na @fig-resfit, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan [@breusch1979simple].
 
-O teste de Breusch-Pagan avalia as seguites hipóteses:
+O teste de Breusch-Pagan [@breusch1979simple] avalia as seguites hipóteses:
 
 -   $H_0$: Homocedasticidade presente.
 -   $H_1$: Heterocedasticidade presente.
@@ -471,7 +473,7 @@ library(lmtest)
 bptest(mod)
 ```
 
-Um resurso muito ágil e amplo de avaliar os presssupostos do modelo são os *gráficos de diagnóstico do modelo* acionados pela conjugação da função `plot()` e o objeto com as dados do modelo.
+Um resurso muito ágil e amplo de avaliar os presssupostos do modelo são os *gráficos de diagnóstico do modelo* acionados pela conjugação da função `plot()` e o objeto com as dados do modelo [@correa2021superficie]
 
 Trata-se de 4 gráficos que são acionados e apresentados a medida que pressiona ENTER no console.
 
@@ -490,9 +492,9 @@ par(mfrow = c(2,2))
 plot(mod)
 ```
 
-O primeiro é o gráfico de **resíduos vs valores ajustados**, já elaborado anteriomente na @fig-resfit, sendi útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será rasoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.
+O primeiro é o gráfico de **resíduos vs valores ajustados**, já elaborado anteriomente na @fig-resfit, sendo útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será razoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.
 
-O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é rasoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (*outliers*).
+O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é razoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (*outliers*).
 
 O segundo gráfico é o **QQplot** permite o exame de normalidade e já foi elaborado na @fig-qqplot, chamando atenção para três valores que se afastam da reta.
 

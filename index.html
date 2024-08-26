@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -202,7 +222,7 @@ window.Quarto = {
 <h1 data-number="3"><span class="header-section-number">3</span> O modelo de regressão</h1>
 <section id="definição-do-modelo" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="definição-do-modelo"><span class="header-section-number">3.1</span> Definição do modelo</h2>
-<p>A <strong>regressão</strong> é uma técnica utilizada para explicar e modelar a relação entre uma variável <em>y</em> , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, <em>x1</em>,…,<em>xk</em> (Faraway 2002).</p>
+<p>A <strong>regressão</strong> é uma técnica utilizada para explicar e modelar a relação entre uma variável <em>y</em> , denominada resposta ou variável dependente, e uma ou mais variáveis independentes, também denominadas fatores ou variáveis explicativas, <em>x1</em>,…,<em>xk</em> <span class="citation" data-cites="faraway2002practical">(<a href="#ref-faraway2002practical" role="doc-biblioref">Faraway, 2002</a>)</span>.</p>
 <p><span class="math display">\[y = f(x_1, x_2, \dots, x_k)\]</span></p>
 <p>A variável dependente deve ser contínua, mas a(s) variável(is) independentes de podem ser contínuas, discretas ou categóricas.</p>
 <p>A regressão pode ser utilizadas para três finalidades básicas:</p>
@@ -623,7 +643,7 @@ Figura&nbsp;4: Resíduos em função dos valores ajustados
 </div>
 </div>
 </div>
-<p>A <strong>normalidade</strong> pode ser examinda por meio do gráfico quantil-quantil (<em>Normal qqplot</em>) e de um teste de aderência, aqui utilizaremos o teste de Shapiro-Wilk.</p>
+<p>A <strong>normalidade</strong> pode ser examinda por meio do gráfico quantil-quantil (<em>Normal qqplot</em>) e de um teste de aderência, aqui utilizaremos o teste de Shapiro-Wilk <span class="citation" data-cites="shapiro1965analysis">(<a href="#ref-shapiro1965analysis" role="doc-biblioref">Shapiro e Wilk, 1965</a>)</span>.</p>
 <p>O <em>Normal Q-Q plot</em> é utilizado para exame visual da normalidade das observações, podendo ser elaborado com as funções <code>qqnorm()</code> e <code>qqline()</code>, tendo como principal argumento os resíduos do modelo. Caso os dados sejam normalmente distribuídos os pontos devem se situar aleatoriamente próximos à reta.</p>
 <p>O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está próximo da, no entanto, três valores se afastam mais, exigindo um exame formal para verificar se esse afastamento é grave.</p>
 <div class="cell fig-cap-location-top">
@@ -642,7 +662,7 @@ Figura&nbsp;5: Resíduos em função dos valores ajustados
 </div>
 </div>
 </div>
-<p>O teste de Shapiro-Wilk é um teste formal de distribuição de normalidade que testa as seguites hipóteses:</p>
+<p>O teste de Shapiro-Wilk <span class="citation" data-cites="shapiro1965analysis">(<a href="#ref-shapiro1965analysis" role="doc-biblioref">Shapiro e Wilk, 1965</a>)</span> é um teste formal de distribuição de normalidade que testa as seguites hipóteses:</p>
 <ul>
 <li><span class="math inline">\(H_0\)</span>: Os dados seguem distribuição normal.</li>
 <li><span class="math inline">\(H_1\)</span>: Os dados NÃO seguem distribuição normal.</li>
@@ -659,8 +679,8 @@ data:  mod$residuals
 W = 0.94907, p-value = 0.51</code></pre>
 </div>
 </div>
-<p>A análise da <strong>homecedasticidade</strong> pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a>, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan.</p>
-<p>O teste de Breusch-Pagan avalia as seguites hipóteses:</p>
+<p>A análise da <strong>homecedasticidade</strong> pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a>, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan <span class="citation" data-cites="breusch1979simple">(<a href="#ref-breusch1979simple" role="doc-biblioref">Breusch e Pagan, 1979</a>)</span>.</p>
+<p>O teste de Breusch-Pagan <span class="citation" data-cites="breusch1979simple">(<a href="#ref-breusch1979simple" role="doc-biblioref">Breusch e Pagan, 1979</a>)</span> avalia as seguites hipóteses:</p>
 <ul>
 <li><span class="math inline">\(H_0\)</span>: Homocedasticidade presente.</li>
 <li><span class="math inline">\(H_1\)</span>: Heterocedasticidade presente.</li>
@@ -682,7 +702,7 @@ data:  mod
 BP = 0.14522, df = 1, p-value = 0.7031</code></pre>
 </div>
 </div>
-<p>Um resurso muito ágil e amplo de avaliar os presssupostos do modelo são os <em>gráficos de diagnóstico do modelo</em> acionados pela conjugação da função <code>plot()</code> e o objeto com as dados do modelo.</p>
+<p>Um resurso muito ágil e amplo de avaliar os presssupostos do modelo são os <em>gráficos de diagnóstico do modelo</em> acionados pela conjugação da função <code>plot()</code> e o objeto com as dados do modelo <span class="citation" data-cites="correa2021superficie">(<a href="#ref-correa2021superficie" role="doc-biblioref">Corrêa <em>et al.</em>, 2021</a>)</span></p>
 <p>Trata-se de 4 gráficos que são acionados e apresentados a medida que pressiona ENTER no console.</p>
 <ol type="a">
 <li>Resíduos vs valores ajustados;</li>
@@ -707,8 +727,8 @@ Figura&nbsp;6: Gráficos de diagnóstico do modelo
 </div>
 </div>
 </div>
-<p>O primeiro é o gráfico de <strong>resíduos vs valores ajustados</strong>, já elaborado anteriomente na <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a>, sendi útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será rasoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.</p>
-<p>O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é rasoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (<em>outliers</em>).</p>
+<p>O primeiro é o gráfico de <strong>resíduos vs valores ajustados</strong>, já elaborado anteriomente na <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a>, sendo útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será razoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.</p>
+<p>O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é razoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (<em>outliers</em>).</p>
 <p>O segundo gráfico é o <strong>QQplot</strong> permite o exame de normalidade e já foi elaborado na <a href="#fig-qqplot" class="quarto-xref">Figura&nbsp;5</a>, chamando atenção para três valores que se afastam da reta.</p>
 <p>O terceiro gráfico é o <strong>scale-location</strong> que é a dispersão dos raízes dos resíduos padronizados em função dos valores ajustados sendo útil para o exame da homocedasticidade. Em caso de homocedasticidade, a linha vermelha será razoavelmente horizontal e os pontos devem se dispersar de forma similar ao longo dos valores ajustados.</p>
 <p>O gráfico revela alguma suspeita de dispersão ligeiramente maior no valor 10, mas a linha vermelha não exibe tendência, portanto, é apesar não não haver indícios de dispersão heterôgenea grave dos resíduos, é prudente incluir um teste formal na análise, o qual já foi realizado pelo teste de Breusch-Pagan anteriormente.</p>
@@ -885,9 +905,23 @@ Tabela&nbsp;1: Primeiras seis observaçoes dos dados de custos mensais de uma f�
 <span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3)</span>
 <span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referências</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-breusch1979simple" class="csl-entry" role="listitem">
+BREUSCH, T. S.; PAGAN, A. R. A simple test for heteroscedasticity and random coefficient variation. <strong>Econometrica: Journal of the econometric society</strong>, p. 1287–1294, 1979.
+</div>
+<div id="ref-correa2021superficie" class="csl-entry" role="listitem">
+CORRÊA, A. C. <em>et al.</em> <a href="https://doi.org/10.37885/211006441">Utiliza<span>ç</span><span>ã</span>o do Ambiente R na assist<span>ê</span>ncia ao m<span>é</span>todo de superf<span>ı́</span>cie de resposta para modelagem e otimiza<span>ç</span><span>ã</span>o da secagem de sementes de urucum</a>. <em>Em</em>: FARIA, L. J. G. DE; ANDRADE, E. L. (Eds.). <strong>Engenharia de produtos naturais: planejamento, experimenta<span>ç</span><span>ã</span>o, obten<span>ç</span><span>ã</span>o de produtos e purifica<span>ç</span><span>ã</span>o</strong>. Guajur<span>á</span>: Cient<span>ı́</span>fica Digital, 2021. p. 84–100.
+</div>
+<div id="ref-faraway2002practical" class="csl-entry" role="listitem">
+FARAWAY, J. J. <strong><a href="http://csyue.nccu.edu.tw/Practical%20Regression%20and%20Anova%20using%20R.pdf">Practical regression and ANOVA using R</a></strong>. Bath, United Kingdom: University of Bath, 2002.
+</div>
+<div id="ref-shapiro1965analysis" class="csl-entry" role="listitem">
+SHAPIRO, S. S.; WILK, M. B. An analysis of variance test for normality (complete samples). <strong>Biometrika</strong>, v. 52, n. 3-4, p. 591–611, 1965.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
