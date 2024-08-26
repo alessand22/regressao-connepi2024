@@ -605,3 +605,16 @@ plot(mod3)
 par(mfrow = c(1,1))
 ```
 
+# Trabalhos com regressão
+
+Aqui alguns trabalhos que utilizam regressão e R realizados pelo Grupo de Estudos Avançados em Gestão:
+
+[Políticas e práticas de gestão de pessoas e intenção de rotatividade: um estudo no Instituto Federal do Pará (Brasil)](https://www.researchgate.net/publication/347269763_Politicas_e_praticas_de_gestao_de_pessoas_e_intencao_de_rotatividade_um_estudo_no_Instituto_Federal_do_Para_Brasil){.external target="_blank"} [@guerra2020politicas]- Regressão utilizada para avaliar os efeitos de políticas de recursos humanos sobre a intenção de rotatitividade de servidores públicos
+
+
+[Mechanical properties and statistical analysis of polyester composite reinforced with miriti fibers braided using crochet technique](https://www.researchgate.net/publication/376692019_Mechanical_properties_and_statistical_analysis_of_polyester_composite_reinforced_with_miriti_fibers_braided_using_crochet_technique){.external target="_blank"} [@freires2024mechanical] - Regressão utilizanda para dados experimentais obtidos de experimentos fatoriais completos.
+
+[Utilização do Ambiente R na assistência ao método de superfície de resposta para modelagem e otimização da secagem de sementes de urucum](https://www.researchgate.net/publication/356666135_Utilizacao_do_Ambiente_R_na_assistencia_ao_metodo_de_superficie_de_resposta_para_modelagem_e_otimizacao_da_secagem_de_sementes_de_urucum){.external target="_blank"} [@correa2021superficie] - Demonstração do uso da regressão como parte de técnicas de otimização em planejamento experimental.
+
+
+# Referências {.unnumbered}
