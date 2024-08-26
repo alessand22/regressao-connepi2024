@@ -154,7 +154,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#o-modelo-final" id="toc-o-modelo-final" class="nav-link" data-scroll-target="#o-modelo-final"><span class="header-section-number">7</span> O modelo final</a></li>
   <li><a href="#praticando" id="toc-praticando" class="nav-link" data-scroll-target="#praticando"><span class="header-section-number">8</span> Praticando</a></li>
-  <li><a href="#trabalhos-com-regressão" id="toc-trabalhos-com-regressão" class="nav-link" data-scroll-target="#trabalhos-com-regressão"><span class="header-section-number">9</span> Trabalhos com regressão</a></li>
+  <li><a href="#multicolinearidade" id="toc-multicolinearidade" class="nav-link" data-scroll-target="#multicolinearidade"><span class="header-section-number">9</span> Multicolinearidade</a></li>
+  <li><a href="#trabalhos-com-regressão" id="toc-trabalhos-com-regressão" class="nav-link" data-scroll-target="#trabalhos-com-regressão"><span class="header-section-number">10</span> Trabalhos com regressão</a></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
 </nav>
@@ -533,7 +534,7 @@ F-statistic: 112.5 on 1 and 13 DF,  p-value: 9.031e-08</code></pre>
 <h2 data-number="6.1" class="anchored" data-anchor-id="os-pressupostos"><span class="header-section-number">6.1</span> Os pressupostos</h2>
 <ol type="1">
 <li><p><strong>Linearidade</strong> A relação entre as variáveis explicativas e a variável dependente é linear. A linearidade pode ser avaliada através da inspeção dos gráficos de dispersão ou de resíduos.</p></li>
-<li><p><strong>Homocedasticidade</strong>: A variância dos resíduos é constante para todos os valores de <em>X</em>. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (b) e ou se altera com algum padrão, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (c), diz-se que o modelo apresenta heterocedasticidade.</p></li>
+<li><p><strong>Homocedasticidade</strong>: A variância dos resíduos é constante para todos os valores de <em>X</em>. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (b) e ou se altera com algum padrão, como na <a href="#fig-homohetero" class="quarto-xref">Figura&nbsp;3</a> (c), diz-se que o modelo apresenta heterocedasticidade, ou seja, a variância dos resíduos não é constante.</p></li>
 </ol>
 <p><span class="math display">\[var(\varepsilon|X_1, X_2, \dots, X_k) = \sigma^2\]</span></p>
 <div class="cell fig-cap-location-top" data-cap-location="top">
@@ -655,10 +656,37 @@ Figura&nbsp;4: Resíduos em função dos valores ajustados
 <div id="fig-qqplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-qqplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5: Resíduos em função dos valores ajustados
+Figura&nbsp;5: QQ plot dos resíduos
 </figcaption>
 <div aria-describedby="fig-qqplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-qqplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>Uma alternativa gráfica interessane é o QQ-plot gerado pelo comando <code>qqPlot()</code> do pacote <strong>car</strong>, o qual deve ter sido previamente instalado com o comando e carregado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"car"</span>) <span class="co"># instala</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># carrega</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de devios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo.</p>
+<p>Apesar da maioria dos dados se manterem dentro dos intervao de confiança, as observações 3 e 6 ultrapassaram os limites. Seria interessante a realização de um teste formal.</p>
+<div class="cell fig-cap-location-top">
+<div class="sourceCode cell-code" id="cb32" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(mod<span class="sc">$</span>res, <span class="at">ylab =</span> <span class="st">"Resíduos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-cap-location="top"><code>[1] 6 3</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-qqplot2" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-qqplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: QQ plot dos resíduos com intervalo de confiança.
+</figcaption>
+<div aria-describedby="fig-qqplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-qqplot2-1.png" class="img-fluid figure-img" width="672">
 </div>
 </figure>
 </div>
@@ -672,7 +700,7 @@ Figura&nbsp;5: Resíduos em função dos valores ajustados
 <p>Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se <span class="math inline">\(p&lt;0,05\)</span>, caso contrário aceita-se a afirmação de normalidade. Então o que se espera é que <span class="math inline">\(p&gt;0,05\)</span>, indicando normalidade e continuidade da análise sem a violação desse pressuposto.</p>
 <p>A função <code>shapiro.test()</code> exibe os valores da estatística de teste (<em>W</em>), que é uma qui-quadrado, e o <em>valor P</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -684,18 +712,18 @@ W = 0.94907, p-value = 0.51</code></pre>
 <p>A análise da <strong>homecedasticidade</strong> pode ser realizado por inspeção visual do gráfico de dispersão dos resíduos em função dos valores ajustados, na <a href="#fig-resfit" class="quarto-xref">Figura&nbsp;4</a>, pelo gráfico Scale-Location (a ser apresentado adiante) e com o teste de Breusch-Pagan <span class="citation" data-cites="breusch1979simple">(<a href="#ref-breusch1979simple" role="doc-biblioref">Breusch e Pagan, 1979</a>)</span>.</p>
 <p>O teste de Breusch-Pagan <span class="citation" data-cites="breusch1979simple">(<a href="#ref-breusch1979simple" role="doc-biblioref">Breusch e Pagan, 1979</a>)</span> avalia as seguites hipóteses:</p>
 <ul>
-<li><span class="math inline">\(H_0\)</span>: Homocedasticidade presente.</li>
-<li><span class="math inline">\(H_1\)</span>: Heterocedasticidade presente.</li>
+<li><span class="math inline">\(H_0\)</span>: Variância é constante.</li>
+<li><span class="math inline">\(H_1\)</span>: Variância NÃO é constante.</li>
 </ul>
-<p>Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se <span class="math inline">\(p&lt;0,05\)</span>, indicando a presença de heterocedasticidade, caso contrário aceita-se a afirmação de homocedasticidade.</p>
+<p>Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se <span class="math inline">\(p&lt;0,05\)</span>, indicando a presença de heterocedasticidade, caso contrário, aceita-se a afirmação de homocedasticidade.</p>
 <p>A função <code>bptest()</code> do pacote <strong>lmtest</strong> efetua o teste de Breusch-Pagan, mas antes o pacote precisa ser instalado por meio da função <code>install.packages()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lmtest"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lmtest"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>No resultado do função, BP corresponde à estística de teste e o seu correspondente valor P = 0.7031, por ser superior 0,05, é não é significante, de forma que não se pode rejeitar a hipótese nula e indica homocedasticidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     studentized Breusch-Pagan test
@@ -712,15 +740,15 @@ BP = 0.14522, df = 1, p-value = 0.7031</code></pre>
 <li>Scale-location;</li>
 <li>Resíduos vs alavangem (<em>Residuals vs Leverage</em>)</li>
 </ol>
-<p>Todavia, é mais confortável, dividir-se a janela gráfica e quatro partes e se apresentar todos juntos para um exame mais rápido. A divisão da janela em 2 linhas e 2 colunas é relizada com o comando <code>par(mfrow = c(2,2))</code>. Em seguida, digita-se o comando para geração dos 4 gráficos de diagnósticos do modelo, conforme apresentados na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;6</a>.</p>
+<p>Todavia, é mais confortável, dividir-se a janela gráfica e quatro partes e se apresentar todos juntos para um exame mais rápido. A divisão da janela em 2 linhas e 2 colunas é relizada com o comando <code>par(mfrow = c(2,2))</code>. Em seguida, digita-se o comando para geração dos 4 gráficos de diagnósticos do modelo, conforme apresentados na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;7</a>.</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode cell-code" id="cb35" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagnosticos" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-diagnosticos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6: Gráficos de diagnóstico do modelo
+Figura&nbsp;7: Gráficos de diagnóstico do modelo
 </figcaption>
 <div aria-describedby="fig-diagnosticos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-diagnosticos-1.png" class="img-fluid figure-img" width="672">
@@ -762,18 +790,18 @@ Figura&nbsp;6: Gráficos de diagnóstico do modelo
 </tr>
 </tbody>
 </table>
-<p>O Residuals vs Leverage na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;6</a> não exibe observações ultrapassando alguma linha de corte da distância de Cook, aliás apenas parte uma linha de D=0,5 aparace no canto superior direito do gráfico, de modo que não há indícios de valores atípicos na amostra.</p>
+<p>O Residuals vs Leverage na <a href="#fig-diagnosticos" class="quarto-xref">Figura&nbsp;7</a> não exibe observações ultrapassando alguma linha de corte da distância de Cook, aliás apenas parte uma linha de D=0,5 aparace no canto superior direito do gráfico, de modo que não há indícios de valores atípicos na amostra.</p>
 <p>Um gráfico com os valores individuais da distância de Cook podem ser exibidos num único gráfico. Para retornar para uma janela sem divisão basta digitar <code>par(mfrow = c(1,1))</code> e o próximo gráfico será gerado em janela única.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>No comando de gráficos de diagnósticos, identifique que deve ser exibido somente o quarto gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -788,16 +816,16 @@ Figura&nbsp;6: Gráficos de diagnóstico do modelo
 \]</span></p>
 <p>Condiderando que se trata de uma regressão simples, pode-se elaborar um gráfico para publicação com os seguinte código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rca <span class="sc">~</span> ps, </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data=</span>dados, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Proporção de resíduos (%)"</span>,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Resistência à Compressão"</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rca <span class="sc">~</span> ps, </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data=</span>dados, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Proporção de resíduos (%)"</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Resistência à Compressão"</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -882,34 +910,55 @@ Tabela&nbsp;1: Primeiras seis observaçoes dos dados de custos mensais de uma f�
 <li>Examine os pressupostos de linearidade , homocedasticidade e normalidade e examine a presença de valores atípicos avalia a significância do efeito das variáveis independentes.</li>
 <li>Decida qual o modelo descritivo.</li>
 </ol>
-<p><strong>SCRIP DE RESOLUÇÃO SUGERIDO</strong></p>
+<p><strong>SCRIPT DE RESOLUÇÃO SUGERIDO</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fabrica <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dadosConnepi.xlsx"</span>, </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"ex2_fabrica"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas <span class="sc">+</span> divulgacao, <span class="at">data =</span> fabrica)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Desativa notação cient.</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod2)</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest) <span class="co"># carrega pacote</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas, <span class="at">data =</span> fabrica)</span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3)</span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fabrica <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dadosConnepi.xlsx"</span>, </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"ex2_fabrica"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas <span class="sc">+</span> divulgacao, <span class="at">data =</span> fabrica)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Desativa notação cient.</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod2)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(mod<span class="sc">$</span>residuals)</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest) <span class="co"># carrega pacote</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(mod)</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas, <span class="at">data =</span> fabrica)</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod3)</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="trabalhos-com-regressão" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Trabalhos com regressão</h1>
+<section id="multicolinearidade" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Multicolinearidade</h1>
+<p>Ocorre multicolinearidade num modelo de regressão quando duas ou mais variáveis independentes são altamente correlacionadas de modo que não proporcionam informação individualizada e independente e, consequentemente, os valores das estimativas e de seus respecitivos valores P deixam de ser confiáveis.</p>
+<p>O valor de VIF pode ser intepretado da seguite maneira:</p>
+<ul>
+<li>VIF = 1: Ausência de correlação</li>
+<li>VIF &lt; 5: Multicolinearidade moderada;</li>
+<li>VIF &gt; 5: Multicolinearidade severa</li>
+</ul>
+<p>No R, o VIF pode ser calculado com a função <code>vif()</code> do pacote <strong>car</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ci <span class="sc">~</span> embalagem <span class="sc">+</span> toneladas, <span class="at">data =</span> fabrica)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mod3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>embalagem toneladas 
+ 1.000879  1.000879 </code></pre>
+</div>
+</div>
+</section>
+<section id="trabalhos-com-regressão" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Trabalhos com regressão</h1>
 <p>Aqui alguns trabalhos que utilizam regressão e R realizados pelo Grupo de Estudos Avançados em Gestão:</p>
 <p><a href="https://www.researchgate.net/publication/347269763_Politicas_e_praticas_de_gestao_de_pessoas_e_intencao_de_rotatividade_um_estudo_no_Instituto_Federal_do_Para_Brasil" class="external" target="_blank">Políticas e práticas de gestão de pessoas e intenção de rotatividade: um estudo no Instituto Federal do Pará (Brasil)</a> <span class="citation" data-cites="guerra2020politicas">(<a href="#ref-guerra2020politicas" role="doc-biblioref">Guerra, Mattos e Corrêa, 2020</a>)</span>- Regressão utilizada para avaliar os efeitos de políticas de recursos humanos sobre a intenção de rotatitividade de servidores públicos</p>
 <p><a href="https://www.researchgate.net/publication/376692019_Mechanical_properties_and_statistical_analysis_of_polyester_composite_reinforced_with_miriti_fibers_braided_using_crochet_technique" class="external" target="_blank">Mechanical properties and statistical analysis of polyester composite reinforced with miriti fibers braided using crochet technique</a> <span class="citation" data-cites="freires2024mechanical">(<a href="#ref-freires2024mechanical" role="doc-biblioref">Freires <em>et al.</em>, 2024</a>)</span> - Regressão utilizanda para dados experimentais obtidos de experimentos fatoriais completos.</p>

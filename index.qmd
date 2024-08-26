@@ -351,7 +351,7 @@ summary(mod)
 
 1.  **Linearidade** A relação entre as variáveis explicativas e a variável dependente é linear. A linearidade pode ser avaliada através da inspeção dos gráficos de dispersão ou de resíduos.
 
-2.  **Homocedasticidade**: A variância dos resíduos é constante para todos os valores de *X*. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na @fig-homohetero (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na @fig-homohetero (b) e ou se altera com algum padrão, como na @fig-homohetero (c), diz-se que o modelo apresenta heterocedasticidade.
+2.  **Homocedasticidade**: A variância dos resíduos é constante para todos os valores de *X*. A dispersão dos resíduos deve se manter ao longo dos valores das variáveis independentes, como exibido na @fig-homohetero (a). Quando a dispersão, por exemplo, aumenta com os valores de X, como na @fig-homohetero (b) e ou se altera com algum padrão, como na @fig-homohetero (c), diz-se que o modelo apresenta heterocedasticidade, ou seja, a variância dos resíduos não é constante.
 
 $$var(\varepsilon|X_1, X_2, \dots, X_k) = \sigma^2$$
 
@@ -425,7 +425,7 @@ O *Normal Q-Q plot* é utilizado para exame visual da normalidade das observaç�
 O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está próximo da, no entanto, três valores se afastam mais, exigindo um exame formal para verificar se esse afastamento é grave.
 
 ```{r}
-#| fig-cap: "Resíduos em função dos valores ajustados"
+#| fig-cap: "QQ plot dos resíduos"
 #| fig-cap-location: top
 #| label: fig-qqplot
 
@@ -433,6 +433,34 @@ O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está p
 qqnorm(mod$residuals, col = "red")
 qqline(mod$residuals)
 ```
+
+Uma alternativa gráfica interessane é o QQ-plot gerado pelo comando `qqPlot()` do pacote **car**, o qual deve ter sido previamente instalado com o comando e carregado. 
+
+```{r}
+#| eval: false
+install.packages("car") # instala
+```
+
+
+```{r}
+#| message: false
+#| warning: false
+library(car) # carrega
+```
+
+Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de devios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo. 
+
+Apesar da maioria dos dados se manterem dentro dos intervao de confiança, as observações 3 e 6 ultrapassaram os limites. Seria interessante a realização de um teste formal.
+
+```{r}
+#| fig-cap: "QQ plot dos resíduos com intervalo de confiança."
+#| fig-cap-location: top
+#| label: fig-qqplot2
+qqPlot(mod$res, ylab = "Resíduos")
+```
+
+
+
 
 O teste de Shapiro-Wilk [@shapiro1965analysis] é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
 
@@ -451,10 +479,10 @@ A análise da **homecedasticidade** pode ser realizado por inspeção visual do 
 
 O teste de Breusch-Pagan [@breusch1979simple] avalia as seguites hipóteses:
 
--   $H_0$: Homocedasticidade presente.
--   $H_1$: Heterocedasticidade presente.
+-   $H_0$: Variância é constante.
+-   $H_1$: Variância NÃO é constante.
 
-Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se $p<0,05$, indicando a presença de heterocedasticidade, caso contrário aceita-se a afirmação de homocedasticidade.
+Considerando um nível de significância de 0,05, rejeita-se a hipótese nula se $p<0,05$, indicando a presença de heterocedasticidade, caso contrário, aceita-se a afirmação de homocedasticidade.
 
 A função `bptest()` do pacote **lmtest** efetua o teste de Breusch-Pagan, mas antes o pacote precisa ser instalado por meio da função `install.packages()`
 
@@ -576,7 +604,7 @@ avalia a significância do efeito das variáveis independentes.
 f. Decida qual o modelo descritivo.
 
 
-**SCRIP DE RESOLUÇÃO SUGERIDO**
+**SCRIPT DE RESOLUÇÃO SUGERIDO**
 
 ```{r}
 #| eval: false
@@ -604,6 +632,28 @@ par(mfrow = c(2,2))
 plot(mod3)
 par(mfrow = c(1,1))
 ```
+
+# Multicolinearidade
+
+Ocorre multicolinearidade num modelo de regressão quando duas ou mais variáveis independentes são altamente correlacionadas de modo que não proporcionam informação individualizada e independente e, consequentemente, os valores das estimativas e de seus respecitivos valores P deixam de ser confiáveis.
+
+O valor de VIF pode ser intepretado da seguite maneira:
+
+ - VIF = 1: Ausência de correlação
+ - VIF < 5: Multicolinearidade moderada;
+ - VIF > 5: Multicolinearidade severa
+
+
+No R, o VIF pode ser calculado com a função `vif()` do pacote **car**.
+
+```{r}
+library(car)
+mod3 <- lm(ci ~ embalagem + toneladas, data = fabrica)
+
+vif(mod3)
+```
+
+
 
 # Trabalhos com regressão
 
