@@ -5,6 +5,7 @@ author:
     email: alessandro.correa@ifpa.edu.br
     affiliations: Professor - IFPA
   - name: "Gabriel Henrique Gomes de Souza"
+    email: eng.gabriel.gsouza@gmail.com
     affiliations: Bolsista PIBICTI/PROPPG/IFPA/CNPq
 affiliations: "Instituto Federal do Pará - IFPA"
 lang: "pt"
@@ -23,7 +24,7 @@ Este é uma material de apoio do Minicurso: **Regressão Linear para pesquisa te
 
 Além das breves explicações destinadas a complementar uma introdução ao modelo de regressão realizada em sala de aula, são disponibilizados os códigos em R e os dados utilizados.
 
-O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão ([GEAG](https://dgp.cnpq.br/dgp/espelhogrupo/34781){.external target="_blank"}), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais ([PPGEMAT](https://belem.ifpa.edu.br/ppgemat){.external target="_blank"}), de Estatística aplicada, na Engenharia de Materiais e de Métodos Quantitativos, ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA. 
+O minicurso foi elaborado a partir das necessidades observadas nas atividades de pesquisa do Grupo de Estudos Aplicados em Gestão ([GEAG](https://dgp.cnpq.br/dgp/espelhogrupo/34781){.external target="_blank"}), nas aulas das disciplinas Planejamento Estatístico e Experimental, do Mestrado em Engenharia de Materiais ([PPGEMAT](https://belem.ifpa.edu.br/ppgemat){.external target="_blank"}), de Estatística aplicada, na Engenharia de Materiais e de Métodos Quantitativos, ministrada nos cursos de Tecnologia em Gestão Pública, em Gestão Hospitalar e em Análise e Desenvolvimento de Sistemas do IFPA.
 
 O modelo de regressão é certamente uma das técnicas estatísticas mais utilizadas em análise de dados, com amplas possibilidades de aplicação em desenvovimento de novas tecnologias e este minicurso é uma introdução gentil ao tema. Espero que aproveitem.
 
@@ -34,7 +35,6 @@ O modelo de regressão é certamente uma das técnicas estatísticas mais utiliz
 -   Posso descrever ou estimar o resultado dessa relação?
 -   Como posso melhorar as propriedades de materiais ou de um sistema, conhecendo a sua relação com os principais fatores envolvidos?
 -   Como realizar os cálculos e gráficos dessas análise sem despesas?
-
 
 # O modelo de regressão
 
@@ -142,7 +142,6 @@ $$e_i =y_i-\hat{y}_i$$
 
 Os resíduos são ilustrados na @fig-residuos e são estimativas dos valores do termo aleatório $\epsilon$ os quais não são observáveis.
 
-
 ```{r}
 #| echo: false
 #| label: fig-residuos
@@ -177,32 +176,31 @@ mtext("y", side=2, line=1, cex=1.5, las=1)
 mtext("x", side=1, line=1, cex=1.5, las=1)
 ```
 
-
 ## Teste dos parâmetros
 
 Dois testes de hipóteses sobre os parâmatros do modelo podem ser realizados a partir de suas estimativas. Pode-se testar o intercepto é zero, conforme a formulação a seguir:
 
- - $H_0: \beta_0=0$
- - $H_1: \beta_0\neq0$
+-   $H_0: \beta_0=0$
+-   $H_1: \beta_0\neq0$
 
+Pode-se avaliar se cada uma das variáveis independentes ($X_k$) são capazes de influenciar a variável dependente ($y$) Se não forem capazes o valor do seu respectivo coeficiente de inclinação será zero, conforme a formulação a seguir:
 
-Pode-se avaliar se cada uma das variáveis independentes ($X_k$) são capazes de influenciar a variável dependente ($y$) Se não forem capazes o valor do  seu respectivo coeficiente de inclinação será zero, conforme a formulação a seguir:
+-   $H_0: \beta_k=0$
+-   $H_1: \beta_k\neq0$
 
- - $H_0: \beta_k=0$
- - $H_1: \beta_k\neq0$
- 
 As decisões dos testes de hipóteses acima são baseadas no teste t, conforme o nível de significãncia adotado (geralmente $\alpha=0,05$) nos valores P associados a essa estatística. **Rejeita-se a hipótese nula, caso o valor P seja inferior a 0,05.**
 
 # Regressão no R
+
 ## O que é o R?
 
-O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word. 
+O R é um ambiente computacional aberto, destinado á análise de dados, disponível gratuitamente na internet e que possui uma ampla comunidade de colaboração volutária. Aliado ao ambiente de desenvolvimento integrado(IDE) RStudio, também disponível gratuitamente, oferece uma interface amigável e integração com outros programas,como o Quarto, o que possibilita a geração de relatórios instantâneos em HyperText Markup Language (HTML), Portable Document Format (PDF) e Microsoft Word.
 
 O programas podem ser baixados para instalaçao nos seguintes endereços.
 
- - [R](https://cran.r-project.org/bin/windows/base/){.external target="_blank"}
- - [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"}
- 
+-   [R](https://cran.r-project.org/bin/windows/base/){.external target="_blank"}
+-   [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"}
+
 Importante, destacar que o R é o software que realizada os cálculos e gráficos e o RStudio é uma interface, portanto esta não irá funcionar sem o R estar instalado.
 
 Ao ser instalado o R traz um conjunto de pacotes básicos. Um pacote é um conjunto de funções que permitem realizar as operações necessárias. Todavia, um conjunto de pacotes adicionais para inúmeros propósitos que podem ser instalados.
@@ -225,9 +223,9 @@ Os recursos desse pacote adicional agora estão disponíveis para as atividades 
 
 Durante este minicurso são utilizados os seguintes pacotes adicionais:
 
- - readxl
- - lmtest
- - car
+-   readxl [@readxl]
+-   lmtest [@lmtest]
+-   car [@car]
 
 ## O diretório de trabalho
 
@@ -240,8 +238,7 @@ A função `getwd()` exibe o diretório de trabalho atual.
 getwd() # diretorio atual
 ```
 
-Para alterar o diretório, utilise a função `setwd()`, informando o caminho. No caminho. Certifique-se de não utilizar, no caminho, o padrão do windows que é "\",  pois no R, o caminho é informado, usando "\\" ou  "/" .
-
+Para alterar o diretório, utilise a função `setwd()`, informando o caminho. No caminho. Certifique-se de não utilizar, no caminho, o padrão do windows que é "", pois no R, o caminho é informado, usando "\\" ou "/" .
 
 ```{r}
 #| eval: false
@@ -253,17 +250,16 @@ Uma alternativa mais confortável para configurar o diretório, é o uso do **Me
 
 ## Lendo e examinando dados no R
 
-Vamos modelar os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um determinado compósito cimentício. Os dados estão na primeira aba, **ex1_compressao**, do arquivo do excel  [**dadosConnepi.xlsx**](dadosConnepi.xlsx) que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que já deve instalado no R porque não é um pacote básico.
+Vamos modelar os efeitos da proporção de substituição (**ps**) de agregados por resíduos de algum material sobre a resistência à compressão axial (**rca**) de um determinado compósito cimentício. Os dados estão na primeira aba, **ex1_compressao**, do arquivo do excel [**dadosConnepi.xlsx**](dadosConnepi.xlsx) que deve está salvo no diretrório de trabalho. Para importar os dados, usa-se a função `read_excel()` do pacote **readxl** que já deve instalado no R porque não é um pacote básico.
 
 ```{r}
 #| eval: false
 install.packages("readxl")
 ```
 
-Carrega-se o pacote e os dados podem ser importados com a função `read_excel()` e salvos no objeto `dados`. 
+Carrega-se o pacote e os dados podem ser importados com a função `read_excel()` e salvos no objeto `dados`.
 
 Os valores do objeto `dados` podem ser exibidos no console pelo seu nome. As colunas podem ser acessadas, com o uso dos cifrões. A estrutura dos dados pode ser exibida com a função `str()`.
-
 
 ```{r}
 library(readxl)
@@ -284,14 +280,11 @@ plot(dados$ps,dados$rca,
      ylab = "Resistência (MPa)")
 ```
 
-
 ```{r}
 plot(rca~ps, data = dados,
      xlab = "Proporção de resíduos (%)",
      ylab = "Resistência (MPa)")
 ```
-
-
 
 O ajuste ou estimação do modelo de regressão linear no R é realizado pela função `lm()`. Os argumentos devem ser inseridos na forma de fórmula. Os argumento `(rca ~ ps, data = dados)`, informam que se deve estimar o modelo de *rca* "em função" de *ps* e que os valores estão armazanados no objeto `dados`.
 
@@ -321,7 +314,6 @@ dadosnovos <- data.frame(ps=c(15, 16, 17))
 
 predict(mod, dadosnovos)
 ```
-
 
 # Qualidade do ajuste
 
@@ -434,13 +426,12 @@ qqnorm(mod$residuals, col = "red")
 qqline(mod$residuals)
 ```
 
-Uma alternativa gráfica interessane é o QQ-plot gerado pelo comando `qqPlot()` do pacote **car**, o qual deve ter sido previamente instalado com o comando e carregado. 
+Uma alternativa gráfica interessane é o QQ-plot gerado pelo comando `qqPlot()` do pacote **car**, o qual deve ter sido previamente instalado com o comando e carregado.
 
 ```{r}
 #| eval: false
 install.packages("car") # instala
 ```
-
 
 ```{r}
 #| message: false
@@ -448,7 +439,7 @@ install.packages("car") # instala
 library(car) # carrega
 ```
 
-Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de devios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo. 
+Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de devios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo.
 
 Apesar da maioria dos dados se manterem dentro dos intervao de confiança, as observações 3 e 6 ultrapassaram os limites. Seria interessante a realização de um teste formal.
 
@@ -458,9 +449,6 @@ Apesar da maioria dos dados se manterem dentro dos intervao de confiança, as ob
 #| label: fig-qqplot2
 qqPlot(mod$res, ylab = "Resíduos")
 ```
-
-
-
 
 O teste de Shapiro-Wilk [@shapiro1965analysis] é um teste formal de distribuição de normalidade que testa as seguites hipóteses:
 
@@ -532,17 +520,17 @@ O gráfico revela alguma suspeita de dispersão ligeiramente maior no valor 10, 
 
 O quarto é o gráfico de **Resíduos vs alavangem** (*Residuals vs Leverage*) destinado à identificação de valores atípicos (*outliers*). Os valores limites para que determinadas observações devam ser avaliadas como possível outlier são as distâncias de Cook que mensuram a influência que as observaçoes exercem sobre a estimativa do modelo. Os valores de corte são apresentadas como linhas tracejadas no interior do gráfico e a intepretação dos seus valores podem são apresentadas na Tabela abaixo.
 
-| D           | Interpretação                                 |
-|-------------|-----------------------------------------------|
-| $D<0,5$     | Não são é uma observação atípica|
-| $0,5< D \leq 1$| Geralmente útil estudar a influência de tais observações|
-| $D>1$| Deve-se avaliar a sua exclusão da  amostra.
+| D               | Interpretação                                            |
+|-----------------|------------------------------------------------------|
+| $D<0,5$         | Não são é uma observação atípica                         |
+| $0,5< D \leq 1$ | Geralmente útil estudar a influência de tais observações |
+| $D>1$           | Deve-se avaliar a sua exclusão da amostra.               |
 
 : Interpretação da distância de Cook
 
 O Residuals vs Leverage na @fig-diagnosticos não exibe observações ultrapassando alguma linha de corte da distância de Cook, aliás apenas parte uma linha de D=0,5 aparace no canto superior direito do gráfico, de modo que não há indícios de valores atípicos na amostra.
 
-Um gráfico com os valores individuais da distância de Cook podem ser exibidos num único gráfico. Para retornar para uma janela sem divisão basta digitar `par(mfrow = c(1,1))` e o próximo gráfico será gerado em janela única. 
+Um gráfico com os valores individuais da distância de Cook podem ser exibidos num único gráfico. Para retornar para uma janela sem divisão basta digitar `par(mfrow = c(1,1))` e o próximo gráfico será gerado em janela única.
 
 ```{r}
 #| eval: false
@@ -574,9 +562,7 @@ plot(rca ~ ps,
 abline(mod, col = "red", lwd = 1.5)
 ```
 
-
 # Praticando
-
 
 Suponha que desejamos estimar os custos indiretos fabrição de uma fábrica de doces. Os dados mensais dos custos indiretos de fabricação, custos de embalagens, produção em toneladas e despesas de divulgação estão na aba **ex2_fabrica** do arquivo do excel [**dadosConnepi.xlsx**](dadosConnepi.xlsx) e cujas seis primeiras linhas são exibidas na @tbl-fabrica.
 
@@ -595,14 +581,11 @@ library(knitr)
 
 Com base nas informaçoes forncecidas, faça o que se pede:
 
-a. Importe dos dados
-b. Ajuste o modelo de regressão linear dos ci em função da embalagem, toneladas e divulgação.
-c. Avalie o ajuste do modelo
-d. Examine os pressupostos de linearidade , homocedasticidade e normalidade
-e examine a presença de valores atípicos
-avalia a significância do efeito das variáveis independentes.
-f. Decida qual o modelo descritivo.
-
+a.  Importe dos dados
+b.  Ajuste o modelo de regressão linear dos ci em função da embalagem, toneladas e divulgação.
+c.  Avalie o ajuste do modelo
+d.  Examine os pressupostos de linearidade , homocedasticidade e normalidade e examine a presença de valores atípicos avalia a significância do efeito das variáveis independentes.
+e.  Decida qual o modelo descritivo.
 
 **SCRIPT DE RESOLUÇÃO SUGERIDO**
 
@@ -637,12 +620,20 @@ par(mfrow = c(1,1))
 
 Ocorre multicolinearidade num modelo de regressão quando duas ou mais variáveis independentes são altamente correlacionadas de modo que não proporcionam informação individualizada e independente e, consequentemente, os valores das estimativas e de seus respecitivos valores P deixam de ser confiáveis.
 
-O valor de VIF pode ser intepretado da seguite maneira:
+O Fator de Inflação da Variância (VIF) é uma medida de multicolinearidade frequentemente utilizada e pode ser calculada para cada uma das variáveis independentes ($X_j$).
 
- - VIF = 1: Ausência de correlação
- - VIF < 5: Multicolinearidade moderada;
- - VIF > 5: Multicolinearidade severa
+$$
+VIF = \frac{1}{1-R_j^2}, \quad j=1,\dots,k
+$$
 
+onde $R_j^2$ é o coeficiente de regressão de uma regresssão de $X_j$ como variável dependente em função das demais do modelo e $k$ é o número de variáveis indenpendentes.
+
+O valor de VIF de uma variável pode ser intepretado da seguite maneira:
+
+-   VIF = 1: Ausência de correlação
+-   VIF \> 5 ou 10: Multicolinearidade severa.
+
+Alguns autores adotam com regra para multicolinearidade severa quando VIF \> 5 [@sheather2009modern], outros quando VIF\>10 [@gujarati2004basic; @chatterjee2015regression].
 
 No R, o VIF pode ser calculado com a função `vif()` do pacote **car**.
 
@@ -653,18 +644,14 @@ mod3 <- lm(ci ~ embalagem + toneladas, data = fabrica)
 vif(mod3)
 ```
 
-
-
 # Trabalhos com regressão
 
 Aqui alguns trabalhos que utilizam regressão e R realizados pelo Grupo de Estudos Avançados em Gestão:
 
 [Políticas e práticas de gestão de pessoas e intenção de rotatividade: um estudo no Instituto Federal do Pará (Brasil)](https://www.researchgate.net/publication/347269763_Politicas_e_praticas_de_gestao_de_pessoas_e_intencao_de_rotatividade_um_estudo_no_Instituto_Federal_do_Para_Brasil){.external target="_blank"} [@guerra2020politicas]- Regressão utilizada para avaliar os efeitos de políticas de recursos humanos sobre a intenção de rotatitividade de servidores públicos
 
-
 [Mechanical properties and statistical analysis of polyester composite reinforced with miriti fibers braided using crochet technique](https://www.researchgate.net/publication/376692019_Mechanical_properties_and_statistical_analysis_of_polyester_composite_reinforced_with_miriti_fibers_braided_using_crochet_technique){.external target="_blank"} [@freires2024mechanical] - Regressão utilizanda para dados experimentais obtidos de experimentos fatoriais completos.
 
 [Utilização do Ambiente R na assistência ao método de superfície de resposta para modelagem e otimização da secagem de sementes de urucum](https://www.researchgate.net/publication/356666135_Utilizacao_do_Ambiente_R_na_assistencia_ao_metodo_de_superficie_de_resposta_para_modelagem_e_otimizacao_da_secagem_de_sementes_de_urucum){.external target="_blank"} [@correa2021superficie] - Demonstração do uso da regressão como parte de técnicas de otimização em planejamento experimental.
-
 
 # Referências {.unnumbered}

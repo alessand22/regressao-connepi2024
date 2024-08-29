@@ -183,7 +183,7 @@ window.Quarto = {
           </p>
       </div>
     <div class="quarto-title-meta-contents">
-    <p class="author">Gabriel Henrique Gomes de Souza </p>
+    <p class="author">Gabriel Henrique Gomes de Souza <a href="mailto:eng.gabriel.gsouza@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -346,9 +346,9 @@ Figura&nbsp;2: Os resíduos
 <p>Os recursos desse pacote adicional agora estão disponíveis para as atividades de análise.</p>
 <p>Durante este minicurso são utilizados os seguintes pacotes adicionais:</p>
 <ul>
-<li>readxl</li>
-<li>lmtest</li>
-<li>car</li>
+<li>readxl <span class="citation" data-cites="readxl">(<a href="#ref-readxl" role="doc-biblioref">Wickham e Bryan, 2023</a>)</span></li>
+<li>lmtest <span class="citation" data-cites="lmtest">(<a href="#ref-lmtest" role="doc-biblioref">Zeileis e Hothorn, 2002</a>)</span></li>
+<li>car <span class="citation" data-cites="car">(<a href="#ref-car" role="doc-biblioref">Fox e Weisberg, 2019</a>)</span></li>
 </ul>
 </section>
 <section id="o-diretório-de-trabalho" class="level2" data-number="4.2">
@@ -358,7 +358,7 @@ Figura&nbsp;2: Os resíduos
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># diretorio atual</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Para alterar o diretório, utilise a função <code>setwd()</code>, informando o caminho. No caminho. Certifique-se de não utilizar, no caminho, o padrão do windows que é “", pois no R, o caminho é informado, usando”\” ou “/” .</p>
+<p>Para alterar o diretório, utilise a função <code>setwd()</code>, informando o caminho. No caminho. Certifique-se de não utilizar, no caminho, o padrão do windows que é ““, pois no R, o caminho é informado, usando”\” ou “/” .</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"meu</span><span class="sc">\\</span><span class="st">caminho"</span>) <span class="co"># conf. diretório</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"meu/caminho"</span>)  <span class="co"># conf. diretório</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -766,8 +766,8 @@ Figura&nbsp;7: Gráficos de diagnóstico do modelo
 <table class="caption-top table">
 <caption>Interpretação da distância de Cook</caption>
 <colgroup>
-<col style="width: 21%">
-<col style="width: 78%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -939,12 +939,17 @@ Tabela&nbsp;1: Primeiras seis observaçoes dos dados de custos mensais de uma f�
 <section id="multicolinearidade" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Multicolinearidade</h1>
 <p>Ocorre multicolinearidade num modelo de regressão quando duas ou mais variáveis independentes são altamente correlacionadas de modo que não proporcionam informação individualizada e independente e, consequentemente, os valores das estimativas e de seus respecitivos valores P deixam de ser confiáveis.</p>
-<p>O valor de VIF pode ser intepretado da seguite maneira:</p>
+<p>O Fator de Inflação da Variância (VIF) é uma medida de multicolinearidade frequentemente utilizada e pode ser calculada para cada uma das variáveis independentes (<span class="math inline">\(X_j\)</span>).</p>
+<p><span class="math display">\[
+VIF = \frac{1}{1-R_j^2}, \quad j=1,\dots,k
+\]</span></p>
+<p>onde <span class="math inline">\(R_j^2\)</span> é o coeficiente de regressão de uma regresssão de <span class="math inline">\(X_j\)</span> como variável dependente em função das demais do modelo e <span class="math inline">\(k\)</span> é o número de variáveis indenpendentes.</p>
+<p>O valor de VIF de uma variável pode ser intepretado da seguite maneira:</p>
 <ul>
 <li>VIF = 1: Ausência de correlação</li>
-<li>VIF &lt; 5: Multicolinearidade moderada;</li>
-<li>VIF &gt; 5: Multicolinearidade severa</li>
+<li>VIF &gt; 5 ou 10: Multicolinearidade severa.</li>
 </ul>
+<p>Alguns autores adotam com regra para multicolinearidade severa quando VIF &gt; 5 <span class="citation" data-cites="sheather2009modern">(<a href="#ref-sheather2009modern" role="doc-biblioref">Sheather, 2009</a>)</span>, outros quando VIF&gt;10 <span class="citation" data-cites="gujarati2004basic chatterjee2015regression">(<a href="#ref-chatterjee2015regression" role="doc-biblioref">Chatterjee e Hadi, 2015</a>; <a href="#ref-gujarati2004basic" role="doc-biblioref">Gujarati, 2004</a>)</span>.</p>
 <p>No R, o VIF pode ser calculado com a função <code>vif()</code> do pacote <strong>car</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
@@ -973,11 +978,17 @@ Tabela&nbsp;1: Primeiras seis observaçoes dos dados de custos mensais de uma f�
 <div id="ref-breusch1979simple" class="csl-entry" role="listitem">
 BREUSCH, T. S.; PAGAN, A. R. A simple test for heteroscedasticity and random coefficient variation. <strong>Econometrica: Journal of the econometric society</strong>, p. 1287–1294, 1979.
 </div>
+<div id="ref-chatterjee2015regression" class="csl-entry" role="listitem">
+CHATTERJEE, S.; HADI, A. S. <strong>Regression analysis by example</strong>. 5. ed. Cairo: John Wiley &amp; Sons, 2015.
+</div>
 <div id="ref-correa2021superficie" class="csl-entry" role="listitem">
 CORRÊA, A. C. <em>et al.</em> <a href="https://doi.org/10.37885/211006441">Utiliza<span>ç</span><span>ã</span>o do Ambiente R na assist<span>ê</span>ncia ao m<span>é</span>todo de superf<span>ı́</span>cie de resposta para modelagem e otimiza<span>ç</span><span>ã</span>o da secagem de sementes de urucum</a>. <em>Em</em>: FARIA, L. J. G. DE; ANDRADE, E. L. (Eds.). <strong>Engenharia de produtos naturais: planejamento, experimenta<span>ç</span><span>ã</span>o, obten<span>ç</span><span>ã</span>o de produtos e purifica<span>ç</span><span>ã</span>o</strong>. Guajur<span>á</span>: Cient<span>ı́</span>fica Digital, 2021. p. 84–100.
 </div>
 <div id="ref-faraway2002practical" class="csl-entry" role="listitem">
 FARAWAY, J. J. <strong><a href="http://csyue.nccu.edu.tw/Practical%20Regression%20and%20Anova%20using%20R.pdf">Practical regression and ANOVA using R</a></strong>. Bath, United Kingdom: University of Bath, 2002.
+</div>
+<div id="ref-car" class="csl-entry" role="listitem">
+FOX, J.; WEISBERG, S. <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">An <span></span>R<span></span> Companion to Applied Regression</a>. 2019.
 </div>
 <div id="ref-freires2024mechanical" class="csl-entry" role="listitem">
 FREIRES, A. M. <em>et al.</em> Mechanical properties and statistical analysis of polyester composite reinforced with miriti fibers braided using crochet technique. <strong>Journal of Materials Research and Technology</strong>, v. 28, p. 4392–4400, 2024.
@@ -985,8 +996,20 @@ FREIRES, A. M. <em>et al.</em> Mechanical properties and statistical analysis of
 <div id="ref-guerra2020politicas" class="csl-entry" role="listitem">
 GUERRA, M. H. T. DA S.; MATTOS, C. A. C.; CORRÊA, A. DE C. Pol<span>ı́</span>ticas e pr<span>á</span>ticas de gest<span>ã</span>o de pessoas e inten<span>ç</span><span>ã</span>o de rotatividade: um estudo no Instituto Federal do Par<span>á</span> (Brasil). <strong>Revista de Carreiras e Pessoas</strong>, v. 10, n. 3, 2020.
 </div>
+<div id="ref-gujarati2004basic" class="csl-entry" role="listitem">
+GUJARATI, D. N. <strong>Basic econometrics</strong>. 4. ed. New Yok: McGraw-Hill Inc, 2004.
+</div>
 <div id="ref-shapiro1965analysis" class="csl-entry" role="listitem">
 SHAPIRO, S. S.; WILK, M. B. An analysis of variance test for normality (complete samples). <strong>Biometrika</strong>, v. 52, n. 3-4, p. 591–611, 1965.
+</div>
+<div id="ref-sheather2009modern" class="csl-entry" role="listitem">
+SHEATHER, S. <strong>A Modern Approach to Regression with R</strong>. New Yok: Springer Science &amp;Business Media, 2009.
+</div>
+<div id="ref-readxl" class="csl-entry" role="listitem">
+WICKHAM, H.; BRYAN, J. <a href="https://CRAN.R-project.org/package=readxl">readxl: Read Excel Files</a>. 2023.
+</div>
+<div id="ref-lmtest" class="csl-entry" role="listitem">
+ZEILEIS, A.; HOTHORN, T. <a href="https://CRAN.R-project.org/doc/Rnews/">Diagnostic Checking in Regression Relationships</a>. v. 2, 2002.
 </div>
 </div></section></div></main>
 <!-- /main column -->
