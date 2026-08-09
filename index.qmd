@@ -414,7 +414,7 @@ A **normalidade** pode ser examinda por meio do gráfico quantil-quantil (*Norma
 
 O *Normal Q-Q plot* é utilizado para exame visual da normalidade das observações, podendo ser elaborado com as funções `qqnorm()` e `qqline()`, tendo como principal argumento os resíduos do modelo. Caso os dados sejam normalmente distribuídos os pontos devem se situar aleatoriamente próximos à reta.
 
-O Normal Q-Q plot, na fig-qqplot, mostra que a maior parte dos resíduos está próximo da, no entanto, três valores se afastam mais, exigindo um exame formal para verificar se esse afastamento é grave.
+O Normal Q-Q plot, na fig-qqplot, mostra os resíduos estão próximo da reta.
 
 ```{r}
 #| fig-cap: "QQ plot dos resíduos"
@@ -439,9 +439,9 @@ install.packages("car") # instala
 library(car) # carrega
 ```
 
-Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de devios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo.
+Nessa alternativa, um intervalo de confiança é traçada em torno da reta para demarcar o limite de desvios toleráveis, assim, as observações de dados normalmente distribuídos devem se mater dentro do intervalo.
 
-Apesar da maioria dos dados se manterem dentro dos intervao de confiança, as observações 3 e 6 ultrapassaram os limites. Seria interessante a realização de um teste formal.
+Os dados se mantém dentro do intervalo de confiança, de forma que que se concluem qoe o pressuposto de normalidade dos resíduos foi atendido
 
 ```{r}
 #| fig-cap: "QQ plot dos resíduos com intervalo de confiança."
@@ -480,7 +480,7 @@ A função `bptest()` do pacote **lmtest** efetua o teste de Breusch-Pagan, mas 
 install.packages("lmtest")
 ```
 
-No resultado do função, BP corresponde à estística de teste e o seu correspondente valor P = 0.7031, por ser superior 0,05, é não é significante, de forma que não se pode rejeitar a hipótese nula e indica homocedasticidade.
+No resultado do função, BP corresponde à estística de teste e o seu correspondente valor P = 0.7895, por ser superior 0,05, é não é significante, de forma que não se pode rejeitar a hipótese nula e indica homocedasticidade.
 
 ```{r}
 #| message: false
@@ -510,13 +510,13 @@ plot(mod)
 
 O primeiro é o gráfico de **resíduos vs valores ajustados**, já elaborado anteriomente na @fig-resfit, sendo útil para o exame da linearidade e da homocedasticidade, mas com o acréscimo de uma linha central para facilitar a análise da dispersão das observações. No caso de linearidade, a linha vermelha será razoavelmente horizontal, mas caso reste algum padrão não linear nos resíduos, a linha vermelha refletirá tal padrão.
 
-O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é razoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (3, 6 e 8) indicam três maiores resíduos, mas não são necessariamente atípicos (*outliers*).
+O gráfico não revela padrões restantes nos resíduos e a linha vermelha, apesar do leve vale em X=7, é razoavelmente horizontal, de forma que não há indícios de violação da linearidade. O três números destacados (1, 3 e 11) indicam três maiores resíduos, mas não são necessariamente atípicos (*outliers*).
 
 O segundo gráfico é o **QQplot** permite o exame de normalidade e já foi elaborado na @fig-qqplot, chamando atenção para três valores que se afastam da reta.
 
 O terceiro gráfico é o **scale-location** que é a dispersão dos raízes dos resíduos padronizados em função dos valores ajustados sendo útil para o exame da homocedasticidade. Em caso de homocedasticidade, a linha vermelha será razoavelmente horizontal e os pontos devem se dispersar de forma similar ao longo dos valores ajustados.
 
-O gráfico revela alguma suspeita de dispersão ligeiramente maior no valor 10, mas a linha vermelha não exibe tendência, portanto, é apesar não não haver indícios de dispersão heterôgenea grave dos resíduos, é prudente incluir um teste formal na análise, o qual já foi realizado pelo teste de Breusch-Pagan anteriormente.
+O gráfico não revela suspeita de dispersão, pois a linha vermelha não exibe tendência, portanto, é apesar não não haver indícios de dispersão heterôgenea grave dos resíduos, é prudente incluir um teste formal na análise, o qual já foi realizado pelo teste de Breusch-Pagan anteriormente.
 
 O quarto é o gráfico de **Resíduos vs alavangem** (*Residuals vs Leverage*) destinado à identificação de valores atípicos (*outliers*). Os valores limites para que determinadas observações devam ser avaliadas como possível outlier são as distâncias de Cook que mensuram a influência que as observaçoes exercem sobre a estimativa do modelo. Os valores de corte são apresentadas como linhas tracejadas no interior do gráfico e a intepretação dos seus valores podem são apresentadas na Tabela abaixo.
 
